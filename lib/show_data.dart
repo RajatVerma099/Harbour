@@ -2,7 +2,8 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:harbour/add_job_modal.dart';
+import 'package:harbour/modal_sheets/add_job_modal.dart';
+import 'package:harbour/modal_sheets/show_job_details_model.dart';
 
 class ShowData extends StatefulWidget {
   const ShowData({super.key});
@@ -27,6 +28,13 @@ class _ShowDataState extends State<ShowData>{
     FirebaseFirestore.instance.collection("Jobs").doc(jobID).delete();
   }
 
+  void myModalSheet(Widget content) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => content,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var jobs = FirebaseFirestore.instance.collection("Jobs");
@@ -36,14 +44,7 @@ class _ShowDataState extends State<ShowData>{
         children: [
           FloatingActionButton(
             tooltip: "Add new Job",
-            onPressed: () {
-              showModalBottomSheet(
-                isScrollControlled: true,
-
-                context: context,
-                builder: (context) => AddJobModal(),
-              );
-            },
+            onPressed: () => myModalSheet(JobModal()),
             child: const Icon(Icons.add),
           ),
         ],
@@ -66,6 +67,9 @@ class _ShowDataState extends State<ShowData>{
                       elevation: 5,
                       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16,),
                       child: ListTile(
+                        onTap: () => myModalSheet(
+                          JobDetailsModal(snapshot.data!.docs[index])
+                        ),
                         leading: CircleAvatar(
                           child: Text("${index + 1}"),
                         ),
@@ -75,7 +79,7 @@ class _ShowDataState extends State<ShowData>{
                         ),
                         title: Text("${snapshot.data!.docs[index]["title"]}"),
                         subtitle: Text(
-                            "${snapshot.data!.docs[index]["desc"]}"),
+                            "${snapshot.data!.docs[index]["company"]}"),
                       ),
                     );
                 },

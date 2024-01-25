@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class AddJobModal extends StatefulWidget {
+class JobModal extends StatefulWidget {
   @override
-  _AddJobModalState createState() => _AddJobModalState();
+  _JobModalState createState() => _JobModalState();
 }
 
-class _AddJobModalState extends State<AddJobModal> {
+class _JobModalState extends State<JobModal> {
   final _formKey = GlobalKey<FormState>();
   Map<String, dynamic> formData = {
     "title": "",
@@ -28,8 +28,7 @@ class _AddJobModalState extends State<AddJobModal> {
       padding: const EdgeInsets.all(16.0),
       child: Form(
         key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: ListView(
           children: [
             TextFormField(
               decoration: const InputDecoration(labelText: 'Job Title'),
