@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:harbour/add_job_modal.dart';
 
 class ShowData extends StatefulWidget {
   const ShowData({super.key});
@@ -11,18 +12,6 @@ class ShowData extends StatefulWidget {
 }
 
 class _ShowDataState extends State<ShowData>{
-
-  void addJob() {
-    FirebaseFirestore.instance.collection("Jobs").add({
-      "title":"Fuck others",
-      "desc": "You have to fuck others' life",
-      "company":"Out of your league",
-      "apply-link":"fuckyou.yomama.org",
-      "experience":"above god",
-      "location":"behind yo mama",
-      "more-info-link":"youwantanotherlink.com"
-    });
-  }
 
   Widget loadingIndicator() {
     var loadingIndicators = const [
@@ -47,7 +36,14 @@ class _ShowDataState extends State<ShowData>{
         children: [
           FloatingActionButton(
             tooltip: "Add new Job",
-            onPressed: addJob,
+            onPressed: () {
+              showModalBottomSheet(
+                isScrollControlled: true,
+
+                context: context,
+                builder: (context) => AddJobModal(),
+              );
+            },
             child: const Icon(Icons.add),
           ),
         ],
