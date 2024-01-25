@@ -1,6 +1,7 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'add_data.dart';
 
 class ShowData extends StatefulWidget {
   const ShowData({super.key});
@@ -13,9 +14,23 @@ class _ShowDataState extends State<ShowData>{
 
   void addJob() {
     FirebaseFirestore.instance.collection("Jobs").add({
-      "Title":"Hello 1",
-      "description": "Wow 2"
+      "title":"Fuck others",
+      "desc": "You have to fuck others' life",
+      "company":"Out of your league",
+      "apply-link":"fuckyou.yomama.org",
+      "experience":"above god",
+      "location":"behind yo mama",
+      "more-info-link":"youwantanotherlink.com"
     });
+  }
+
+  Widget loadingIndicator() {
+    var loadingIndicators = const [
+      CircularProgressIndicator(),
+      LinearProgressIndicator(),
+    ];
+    var index = Random().nextInt(loadingIndicators.length);
+    return loadingIndicators[index];
   }
 
   void removeJob(jobID) {
@@ -45,37 +60,44 @@ class _ShowDataState extends State<ShowData>{
           stream: jobs.snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: Text("Loading ..."),);
+              return Center(child: loadingIndicator(),);
             }
             else if (snapshot.connectionState == ConnectionState.active) {
-              if (snapshot.hasData) {
-                return ListView.builder(itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: CircleAvatar(
-                      child: Text("${index + 1}"),
-                    ),
-                    trailing: IconButton(onPressed: () {
-                      removeJob(snapshot.data!.docs[index].reference.id);
-                    }, icon: const Icon(Icons.delete), 
-                    ),
-                    title: Text("${snapshot.data!.docs[index]["Title"]}"),
-                    subtitle: Text(
-                        "${snapshot.data!.docs[index]["description"]}"),
-                  );
+              if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    return Card(
+                      elevation: 5,
+                      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16,),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          child: Text("${index + 1}"),
+                        ),
+                        trailing: IconButton(onPressed: () {
+                          removeJob(snapshot.data!.docs[index].reference.id);
+                        }, icon: const Icon(Icons.delete), 
+                        ),
+                        title: Text("${snapshot.data!.docs[index]["title"]}"),
+                        subtitle: Text(
+                            "${snapshot.data!.docs[index]["desc"]}"),
+                      ),
+                    );
                 },
                 itemCount: snapshot.data!.docs.length,
                 );
               }
               else {
-                print("no data");
+                return const Center(
+                  child: Text("No Jobs"),
+                );
               }
             }
             else {
-              print("no active connection");
+              return const Center(
+                  child: Text("No Connection"),
+                );
             }
-            return const Divider();
           }
-
       ),
     );
   }}
