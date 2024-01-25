@@ -56,7 +56,7 @@ class _JobModalState extends State<JobModal> {
             ),
             TextFormField(
               decoration: const InputDecoration(labelText: 'Apply Link'),
-              onSaved: (value) => formData['applyLink'] = value,
+              onSaved: (value) => formData['apply-link'] = value,
               validator: (value) {
                 // Add your own validation logic if needed
                 return null;

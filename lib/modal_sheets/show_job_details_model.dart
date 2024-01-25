@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class JobDetailsModal extends StatelessWidget {
   
@@ -20,6 +22,13 @@ class JobDetailsModal extends StatelessWidget {
     moreInfoLink = job["more-info-link"];
   }
   
+  Future<void> _onOpen(LinkableElement link) async {
+    print("Linking!!!");
+    if (!await launchUrl(Uri.parse(link.url))) {
+      throw Exception('Could not launch ${link.url}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,13 +36,21 @@ class JobDetailsModal extends StatelessWidget {
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(title),
-            Text(desc),
+            Text(title, style: const TextStyle(fontSize: 30,),),
             Text(company),
-            Text(applyLink),
-            Text(experience),
-            Text(location),
-            Text(moreInfoLink),
+            const SizedBox(height: 20),
+            Text(desc),
+            const SizedBox(height: 20),
+            Linkify(
+              onOpen: _onOpen,
+              text: applyLink,
+              options: const LinkifyOptions(
+                humanize: true,
+              ),
+            ),
+            Text("Experience: $experience"),
+            Text("At: $location"),
+            Text("More Info: $moreInfoLink"),
           ],
         ),
     );
