@@ -75,7 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.large(
         onPressed: () => goTo(const ShowData(), context),
         tooltip: 'Lets start!',
         child: const Icon(Icons.play_arrow_rounded),
