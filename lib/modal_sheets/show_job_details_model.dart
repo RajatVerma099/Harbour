@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// ignore: must_be_immutable
 class JobDetailsModal extends StatelessWidget {
   
   String title = "";
@@ -33,8 +34,8 @@ class JobDetailsModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: ListView(
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(title, style: const TextStyle(fontSize: 30,),),
             Text(company),
