@@ -5,6 +5,8 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+import java.util.Properties
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -24,20 +26,10 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.harbour"
-    compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+    compileSdkVersion 33 // Update to the latest version
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.harbour"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
@@ -45,20 +37,167 @@ android {
         multiDexEnabled true
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
     }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+    packagingOptions {
+        pickFirst 'lib/x86/libflutter.so'
+        pickFirst 'lib/x86_64/libflutter.so'
+    }
+
+    // Add the following line to specify the namespace
+    namespace 'com.example.harbour' // Change to your desired namespace
+}
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:32.7.1')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.android.support:multidex:1.0.3'
+
+    implementation 'com.google.gms:google-services:4.3.10' // Use a version compatible with Java 8
 }
 
 flutter {
     source '../..'
 }
-dependencies{
-    implementation platform('com.google.firebase:firebase-bom:32.7.1')
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.android.support:multidex:1.0.3'
-}
+
+//plugins {
+//    id "com.android.application"
+//    id "kotlin-android"
+//    id "dev.flutter.flutter-gradle-plugin"
+//    id 'com.google.gms.google-services'
+//}
+//
+//import java.util.Properties // Add this import statement
+//
+//def localProperties = new Properties()
+//def localPropertiesFile = rootProject.file('local.properties')
+//if (localPropertiesFile.exists()) {
+//    localPropertiesFile.withReader('UTF-8') { reader ->
+//        localProperties.load(reader)
+//    }
+//}
+//
+//def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+//if (flutterVersionCode == null) {
+//    flutterVersionCode = '1'
+//}
+//
+//def flutterVersionName = localProperties.getProperty('flutter.versionName')
+//if (flutterVersionName == null) {
+//    flutterVersionName = '1.0'
+//}
+//
+//android {
+//    namespace "com.example.harbour"
+//    compileSdkVersion flutter.compileSdkVersion
+//    ndkVersion flutter.ndkVersion
+//
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+//
+//    defaultConfig {
+//        applicationId "com.example.harbour"
+//        minSdkVersion flutter.minSdkVersion
+//        targetSdkVersion flutter.targetSdkVersion
+//        versionCode flutterVersionCode.toInteger()
+//        versionName flutterVersionName
+//        multiDexEnabled true
+//    }
+//
+//    buildTypes {
+//        release {
+//            signingConfig signingConfigs.debug
+//        }
+//    }
+//}
+//
+//dependencies {
+//    implementation platform('com.google.firebase:firebase-bom:32.7.1')
+//    implementation 'com.google.firebase:firebase-analytics'
+//    implementation 'com.android.support:multidex:1.0.3'
+//    implementation 'com.google.gms:google-services:4.4.0' // Use a version compatible with Java 8
+//}
+//
+//flutter {
+//    source '../..'
+//}
+//
+////plugins {
+////    id "com.android.application"
+////    id "kotlin-android"
+////    id "dev.flutter.flutter-gradle-plugin"
+////    id 'com.google.gms.google-services'
+////}
+////
+////def localProperties = new Properties()
+////def localPropertiesFile = rootProject.file('local.properties')
+////if (localPropertiesFile.exists()) {
+////    localPropertiesFile.withReader('UTF-8') { reader ->
+////        localProperties.load(reader)
+////    }
+////}
+////
+////def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+////if (flutterVersionCode == null) {
+////    flutterVersionCode = '1'
+////}
+////
+////def flutterVersionName = localProperties.getProperty('flutter.versionName')
+////if (flutterVersionName == null) {
+////    flutterVersionName = '1.0'
+////}
+////
+////android {
+////    namespace "com.example.harbour"
+////    compileSdkVersion flutter.compileSdkVersion
+////    ndkVersion flutter.ndkVersion
+////
+////    compileOptions {
+////        sourceCompatibility JavaVersion.VERSION_1_8
+////        targetCompatibility JavaVersion.VERSION_1_8
+////    }
+////
+////    defaultConfig {
+////        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+////        applicationId "com.example.harbour"
+////        // You can update the following values to match your application needs.
+////        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+////        minSdkVersion flutter.minSdkVersion
+////        targetSdkVersion flutter.targetSdkVersion
+////        versionCode flutterVersionCode.toInteger()
+////        versionName flutterVersionName
+////        multiDexEnabled true
+////    }
+////
+////    buildTypes {
+////        release {
+////            // TODO: Add your own signing config for the release build.
+////            // Signing with the debug keys for now, so `flutter run --release` works.
+////            signingConfig signingConfigs.debug
+////        }
+////    }
+////}
+////
+////flutter {
+////    source '../..'
+////}
+////dependencies{
+////    implementation platform('com.google.firebase:firebase-bom:32.7.1')
+////    implementation 'com.google.firebase:firebase-analytics'
+////    implementation 'com.android.support:multidex:1.0.3'
+////}
