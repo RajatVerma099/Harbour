@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:harbour/modal_sheets/add_job_modal.dart';
 import 'package:harbour/modal_sheets/show_job_details_model.dart';
+import 'package:harbour/tools/navigation.dart';
 
 class ShowData extends StatefulWidget {
   const ShowData({super.key});
@@ -16,8 +17,13 @@ class _ShowDataState extends State<ShowData>{
 
   Widget loadingIndicator() {
     var loadingIndicators = const [
-      CircularProgressIndicator(),
-      LinearProgressIndicator(),
+      CircularProgressIndicator(
+        strokeWidth: 3,
+      ),
+      LinearProgressIndicator(
+        borderRadius: BorderRadius.all(Radius.circular(3)),
+      ),
+
     ];
     var index = Random().nextInt(loadingIndicators.length);
     return loadingIndicators[index];
@@ -40,8 +46,13 @@ class _ShowDataState extends State<ShowData>{
     var jobs = FirebaseFirestore.instance.collection("Jobs");
     return Scaffold(
       floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          FloatingActionButton(
+            tooltip: "Go Home",
+            onPressed: () => goBack(context),
+            child: const Icon(Icons.home_rounded),
+          ),
           FloatingActionButton(
             tooltip: "Add new Job",
             onPressed: () => myModalSheet(JobModal()),
