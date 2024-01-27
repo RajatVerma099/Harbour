@@ -36,7 +36,7 @@ class _OnBoardState extends State<OnBoard> {
       desc:
       "Connect with a community of fellow job seekers and industry experts. Harbour is not just an app; it's a supportive community that believes in your potential. Join hands with us as we navigate the seas of opportunities together. Your next career adventure awaits — let's make it happen with Harbour!",
       bg: Colors.white,
-      button: Color(0xFF4756DF),
+      button: const Color(0xFF4756DF),
     ),
   ];
 
@@ -74,7 +74,7 @@ class _OnBoardState extends State<OnBoard> {
               Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (context) => ShowData()));
             },
-            child: Text(
+            child: const Text(
               "Skip",
               style: TextStyle(
                 color: Colors.black,
@@ -132,7 +132,7 @@ class _OnBoardState extends State<OnBoard> {
                   Text(
                     screens[index].text,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 27.0,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Poppins',
@@ -142,7 +142,7 @@ class _OnBoardState extends State<OnBoard> {
                   Text(
                     screens[index].desc,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14.0,
                       fontFamily: 'Montserrat',
                       color: Colors.black,
@@ -170,7 +170,7 @@ class _OnBoardState extends State<OnBoard> {
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(

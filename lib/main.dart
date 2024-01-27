@@ -5,6 +5,7 @@ import 'package:harbour/show_data.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'main_drawer.dart';
 import 'onboard.dart';
 
 void main() async {
@@ -83,12 +84,14 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(title),
       ),
-      body: const Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Welcome to Job Shore. This is where you, as a community, work together to find jobs!',
+              'Welcome to Harbour, your harbor for navigating the job market! We\'re here to guide you on your quest for meaningful employment. Let\'s set sail on a journey together to discover personalized resources for your career aspirations.',
+              textAlign: TextAlign.center,
             ),
           ],
         ),
@@ -99,7 +102,9 @@ class MyHomePage extends StatelessWidget {
         tooltip: 'Let\'s start!',
         child: const Icon(Icons.play_arrow_rounded),
       ),
+    drawer: MainDrawer(),
     );
+
   }
 }
 
