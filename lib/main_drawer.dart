@@ -4,6 +4,8 @@ import 'UserPage.dart';
 class MainDrawer extends StatelessWidget {
   final padding = const EdgeInsets.symmetric(horizontal: 20);
 
+  const MainDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     const imageUrl1 =

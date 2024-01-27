@@ -105,7 +105,7 @@ class _OnBoardState extends State<OnBoard> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Image.asset(screens[index].img),
-                  Container(
+                  SizedBox(
                     height: 10.0,
                     child: ListView.builder(
                       itemCount: screens.length,
@@ -116,7 +116,7 @@ class _OnBoardState extends State<OnBoard> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              margin: EdgeInsets.symmetric(horizontal: 3.0),
+                              margin: const EdgeInsets.symmetric(horizontal: 3.0),
                               width: currentIndex == index ? 25 : 8,
                               height: 8,
                               decoration: BoxDecoration(
