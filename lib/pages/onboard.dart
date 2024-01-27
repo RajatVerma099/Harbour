@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:harbour/show_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../constant.dart';
-import 'onboard_model.dart';
+import './show_data.dart';
+import '../global_constants.dart';
+import '../datatypes/onboard_model.dart';
 
 class OnBoard extends StatefulWidget {
   @override

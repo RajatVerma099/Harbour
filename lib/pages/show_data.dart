@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:harbour/modal_sheets/add_job_modal.dart';
-import 'package:harbour/modal_sheets/show_job_details_model.dart';
-import 'package:harbour/tools/navigation.dart';
+import '../modal_sheets/add_job_modal.dart';
+import '../modal_sheets/show_job_details_model.dart';
+import '../tools/navigation.dart';
 
 class ShowData extends StatefulWidget {
   const ShowData({super.key});

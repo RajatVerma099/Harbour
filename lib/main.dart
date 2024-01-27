@@ -1,12 +1,12 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:harbour/show_data.dart';
+import './pages/show_data.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'main_drawer.dart';
-import 'onboard.dart';
+import 'drawer/main_drawer.dart';
+import 'pages/onboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'UserPage.dart';
-import 'UserPage_two.dart';
+import '../pages/UserPage.dart';
+import '../pages/UserPage_two.dart';
 
 class MainDrawer extends StatelessWidget {
   final padding = const EdgeInsets.symmetric(horizontal: 20);
