@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:harbour/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import './show_data.dart';
@@ -72,7 +73,7 @@ class _OnBoardState extends State<OnBoard> {
             onPressed: () {
               _storeOnboardInfo();
               Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => ShowData()));
+                  context, MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Welcome ashore',)));
             },
             child: const Text(
               "Skip",
