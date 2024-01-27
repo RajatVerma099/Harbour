@@ -73,7 +73,7 @@ class _OnBoardState extends State<OnBoard> {
             onPressed: () {
               _storeOnboardInfo();
               Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Welcome ashore',)));
+                  context, MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Welcome Seeker !',)));
             },
             child: const Text(
               "Skip",
@@ -89,7 +89,7 @@ class _OnBoardState extends State<OnBoard> {
         child: PageView.builder(
           itemCount: screens.length,
           controller: _pageController,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           onPageChanged: (int index) {
             setState(() {
               currentIndex = index;
@@ -156,12 +156,12 @@ class _OnBoardState extends State<OnBoard> {
                         await _storeOnboardInfo();
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => ShowData()),
+                          MaterialPageRoute(builder: (context) => const MyHomePage(title: "Welcome Seeker !")),
                         );
                       }
 
                       _pageController.nextPage(
-                        duration: Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 500),
                         curve: Curves.linear,
                       );
                     },
