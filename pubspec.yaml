@@ -71,6 +71,9 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - img/infinity.gif
+    - img/onboard1.jpg
+    - img/onboard2.jpg
+    - img/onboard3.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
