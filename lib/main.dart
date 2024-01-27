@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         // Adjust other theme properties as needed
       ),
       home: AnimatedSplashScreen(
-        splash: Image.asset('img/infinity.gif', fit: BoxFit.cover),
+        splash: Image.asset('assets/img/infinity.gif', fit: BoxFit.cover),
         splashIconSize: 200,
         splashTransition: SplashTransition.scaleTransition,
         backgroundColor: Colors.black,
