@@ -15,7 +15,7 @@ class _OnBoardState extends State<OnBoard> {
   late PageController _pageController;
   List<OnboardModel> screens = <OnboardModel>[
     OnboardModel(
-      img: 'img/onboard1.jpg',
+      img: 'assets/img/onboard1.jpg',
       text: "Welcome to Harbour",
       desc:
       "Welcome to Harbour, your harbor for navigating the job market! We're here to guide you on your quest for meaningful employment. Let's set sail on a journey together to discover personalized resources for your career aspirations.",
@@ -23,7 +23,7 @@ class _OnBoardState extends State<OnBoard> {
       button: Color(0xFF4756DF),
     ),
     OnboardModel(
-      img: 'img/onboard2.jpg',
+      img: 'assets/img/onboard2.jpg',
       text: "Navigate Resources",
       desc:
       "Navigate through a treasure trove of resources designed to elevate your job application journey. From crafting an impactful resume to mastering the art of interviews, Harbour equips you with the essentials to excel in your job search. Let's embark on this voyage and chart your course to success!",
@@ -31,7 +31,7 @@ class _OnBoardState extends State<OnBoard> {
       button: Color(0xFF4756DF),
     ),
     OnboardModel(
-      img: 'img/onboard3.jpg',
+      img: 'assets/img/onboard3.jpg',
       text: "Connect and Thrive",
       desc:
       "Connect with a community of fellow job seekers and industry experts. Harbour is not just an app; it's a supportive community that believes in your potential. Join hands with us as we navigate the seas of opportunities together. Your next career adventure awaits — let's make it happen with Harbour!",

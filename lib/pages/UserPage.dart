@@ -23,7 +23,7 @@ class UserPage extends StatelessWidget {
           children: <Widget>[
             const CircleAvatar(
               radius: 80.0,
-              backgroundImage: AssetImage('img/rv.jpg'),
+              backgroundImage: AssetImage('assets/img/rv.jpg'),
             ),
             const SizedBox(height: 10.0),
             const Text(
@@ -58,21 +58,21 @@ class UserPage extends StatelessWidget {
                 children: [
                   buildClickableIcon(
                     context: context,
-                    icon: 'img/gmail.png',
+                    icon: 'assets/img/gmail.png',
                     onTap: () {
                       launch('mailto:lostpoet099@gmail.com');
                     },
                   ),
                   buildClickableIcon(
                     context: context,
-                    icon: 'img/linkedin.png',
+                    icon: 'assets/img/linkedin.png',
                     onTap: () {
                       launch('https://www.linkedin.com/in/rajat-verma-321336224/');
                     },
                   ),
                   buildClickableIcon(
                     context: context,
-                    icon: 'img/github_.png',
+                    icon: 'assets/img/github_.png',
                     onTap: () {
                       launch('https://github.com/RajatVerma099');
                     },
