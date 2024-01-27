@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class UserPage extends StatelessWidget {
+class UserPage_two extends StatelessWidget {
   final String name;
-  const UserPage({
+  const UserPage_two({
     Key? key,
     required this.name,
   }) : super(key: key);
@@ -23,11 +23,11 @@ class UserPage extends StatelessWidget {
           children: <Widget>[
             const CircleAvatar(
               radius: 80.0,
-              backgroundImage: AssetImage('img/rv.jpg'),
+              backgroundImage: AssetImage('img/mg.jpg'),
             ),
             const SizedBox(height: 10.0),
             const Text(
-              'Rajat Verma',
+              'Mudit Garg',
               style: TextStyle(
                 fontFamily: 'DanceScript',
                 fontSize: 40.0,
@@ -43,7 +43,7 @@ class UserPage extends StatelessWidget {
               ),
             ),
             const Text(
-              'Life is a virtual mess we weave',
+              'It is what it is !',
               style: TextStyle(
                 fontFamily: 'Pacifico',
                 fontSize: 15.0,
@@ -60,21 +60,21 @@ class UserPage extends StatelessWidget {
                     context: context,
                     icon: 'img/gmail.png',
                     onTap: () {
-                      launch('mailto:lostpoet099@gmail.com');
+                      launch('mailto:gargmu@tcd.ie');
                     },
                   ),
                   buildClickableIcon(
                     context: context,
                     icon: 'img/linkedin.png',
                     onTap: () {
-                      launch('https://www.linkedin.com/in/rajat-verma-321336224/');
+                      launch('https://linkedin.com/in/muditgarg48');
                     },
                   ),
                   buildClickableIcon(
                     context: context,
                     icon: 'img/github_.png',
                     onTap: () {
-                      launch('https://github.com/RajatVerma099');
+                      launch('https://github.com/muditgarg48');
                     },
                   ),
                 ],
@@ -84,7 +84,7 @@ class UserPage extends StatelessWidget {
             const SizedBox(height: 50),
             const SizedBox(height: 300),
             const Text(
-              'That\'s it. Bye!',
+              'Adios amigo!',
               style: TextStyle(
                 fontFamily: 'DancingScript',
                 fontSize: 25.0,
@@ -94,7 +94,7 @@ class UserPage extends StatelessWidget {
             const SizedBox(height: 60),
             const SizedBox(height: 700),
             const Text(
-              'Stop scrolling!!!',
+              'Cya',
               style: TextStyle(
                 fontFamily: 'DancingScript',
                 fontSize: 15.0,

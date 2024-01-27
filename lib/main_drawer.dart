@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'UserPage.dart';
+import 'UserPage_two.dart';
 
 class MainDrawer extends StatelessWidget {
   final padding = const EdgeInsets.symmetric(horizontal: 20);
@@ -24,7 +25,7 @@ class MainDrawer extends StatelessWidget {
               email: 'muditgarg48@gmail.com',
               onClicked: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const UserPage(
+                  builder: (context) => const UserPage_two(
                     name: 'Mudit Garg',
                   ),
                 ),
