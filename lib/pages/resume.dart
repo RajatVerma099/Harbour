@@ -43,95 +43,63 @@ class _ResumeState extends State<Resume> {
       appBar: AppBar(
         title: const Text('Card Viewer'),
       ),
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          CarouselSlider.builder(
-            carouselController: _controller,
-            itemCount: imageUrls.length,
-            options: CarouselOptions(
-              height: 600.0,
-              enableInfiniteScroll: false,
-              viewportFraction: 0.8,
-              enlargeCenterPage: true,
-              pageSnapping: false,
-              scrollPhysics: BouncingScrollPhysics(),
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
-            ),
-            itemBuilder: (context, index, realIndex) {
-              return Container(
-                width: double.infinity,
-                child: Card(
-                  elevation: 16.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.zero,
-                    child: Image.network(
-                      imageUrls[index],
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              );
+      body: Center(
+        child: CarouselSlider.builder(
+          carouselController: _controller,
+          itemCount: imageUrls.length,
+          options: CarouselOptions(
+            height: 500.0,
+            enableInfiniteScroll: false,
+            viewportFraction: 0.8,
+            enlargeCenterPage: true,
+            pageSnapping: false,
+            scrollPhysics: BouncingScrollPhysics(),
+            onPageChanged: (index, reason) {
+              setState(() {
+                _currentIndex = index;
+              });
             },
           ),
-          Positioned(
-            top: 0.0,
-            left: 0.0,
-            right: 0.0,
-            child: FrostedGlassHeader(),
-          ),
-          Positioned(
-            bottom: 16.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                imageUrls.length,
-                    (index) => Container(
-                  width: 8.0,
-                  height: 8.0,
-                  margin: EdgeInsets.symmetric(horizontal: 4.0),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white.withOpacity(index == _currentIndex ? 1.0 : 0.4),
+          itemBuilder: (context, index, realIndex) {
+            return Container(
+              width: double.infinity,
+              color: Colors.white, // Set the background color to white
+              child: Card(
+                elevation: 16.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.zero,
+                  child: Image.network(
+                    imageUrls[index],
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class FrostedGlassHeader extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100.0,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Colors.white.withOpacity(0.2), Colors.white.withOpacity(0.5)],
+            );
+          },
         ),
       ),
-      child: Center(
+      bottomNavigationBar: Positioned(
+        bottom: 16.0, // Adjust the bottom margin as needed
+        left: 0,
+        right: 0,
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            'Tap to Download',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              imageUrls.length,
+                  (index) => Container(
+                width: 8.0,
+                height: 8.0,
+                margin: EdgeInsets.symmetric(horizontal: 4.0),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey.withOpacity(index == _currentIndex ? 1.0 : 0.4),
+                ),
+              ),
             ),
           ),
         ),
