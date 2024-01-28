@@ -7,3 +7,7 @@ void goTo(Widget nextPage, BuildContext context) {
 void goBack(BuildContext context) {
   Navigator.of(context).pop();
 }
+
+void jumpTo(Widget nextPage, BuildContext context) {
+  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>nextPage));
+}
