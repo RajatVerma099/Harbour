@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../pages/BuyUsACoffee.dart';
+import '../pages/support_us.dart';
 import '../pages/UserPage.dart';
 import '../pages/UserPage_two.dart';
 

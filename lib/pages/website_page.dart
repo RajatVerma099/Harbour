@@ -6,13 +6,13 @@ class WebsitePage extends StatelessWidget {
     'Zety',
     'Resume.com',
     'Canva',
-    'Novoresume',
-    'Visualcv',
-    'Resumegenius',
-    'Kickresume',
-    'Resumebuilder',
-    'Cvmkr',
-    'Resume-now',
+    'Novo Resume',
+    'Visual CV',
+    'Resume Genius',
+    'Kick Resume',
+    'Resume Builder',
+    'cv maker',
+    'ResumeMaker',
   ];
 
   final List<String> websiteUrls = [
@@ -38,13 +38,14 @@ class WebsitePage extends StatelessWidget {
     {'name': 'Icon7', 'path': 'assets/icons/kickresume.png'},
     {'name': 'Icon8', 'path': 'assets/icons/resumebuilder.png'},
     {'name': 'Icon9', 'path': 'assets/icons/cvmaker.png'},
-    {'name': 'Icon10', 'path': 'assets/icons/resumedotcom.png'},
+    {'name': 'Icon10', 'path': 'assets/icons/resumemaker.png'},
     // Add paths for other icons
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Select Resume Builder Site'),
       ),
@@ -59,7 +60,7 @@ class WebsitePage extends StatelessWidget {
           return InkWell(
             onTap: () => _launchWebsite(websiteUrls[index]),
             child: Card(
-              elevation: 8.0, // Increased elevation
+              // elevation: 8.0, // Increased elevation
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(24.0), // More curved edges
               ),
@@ -72,10 +73,10 @@ class WebsitePage extends StatelessWidget {
                     width: 80.0, // Larger icon size
                     height: 80.0,
                   ),
-                  SizedBox(height: 12.0), // Increased spacing
+                  const SizedBox(height: 12.0), // Increased spacing
                   Text(
                     websiteNames[index],
-                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
                 ],
