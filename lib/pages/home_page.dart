@@ -12,6 +12,8 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double buttonWidth = MediaQuery.of(context).size.width * 0.3; // Adjust the width factor as needed
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
@@ -36,26 +38,32 @@ class MyHomePage extends StatelessWidget {
           FloatingActionButton.extended(
             onPressed: () => goTo(const ShowData(), context),
             tooltip: 'Show Jobs',
-            label: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children:[
-                Icon(Icons.list),
-                SizedBox(width: 4),
-                Text("Show available Jobs"),
-              ],
+            label: SizedBox(
+              width: buttonWidth,
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(Icons.list),
+                  SizedBox(width: 4),
+                  Text("Show Jobs"),
+                ],
+              ),
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(width: 10),
           FloatingActionButton.extended(
             onPressed: () => goTo(const Resume(), context),
             tooltip: 'Make resume',
-            label: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children:[
-                Icon(Icons.document_scanner_rounded),
-                SizedBox(width: 4),
-                Text("Resume Maker"),
-              ],
+            label: SizedBox(
+              width: buttonWidth,
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(Icons.document_scanner_rounded),
+                  SizedBox(width: 4),
+                  Text("Resume Maker"),
+                ],
+              ),
             ),
           ),
         ],
@@ -63,5 +71,4 @@ class MyHomePage extends StatelessWidget {
       drawer: const MainDrawer(),
     );
   }
-  
 }
