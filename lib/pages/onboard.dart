@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbour/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import './show_data.dart';
 import '../global_constants.dart';
 import '../datatypes/onboard_model.dart';
 
