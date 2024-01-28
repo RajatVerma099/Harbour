@@ -41,7 +41,6 @@ class _ResumeState extends State<Resume> {
     'https://firebasestorage.googleapis.com/v0/b/harbour-39025.appspot.com/o/9-Minimalist%20White%20and%20Grey%20Professional%20Resume.pdf?alt=media&token=3e46e640-e632-4ae9-b003-d4a151ab3fe5',
     'https://firebasestorage.googleapis.com/v0/b/harbour-39025.appspot.com/o/10-Simple%20Resume%20in%20White%20and%20Pastel%20Blue%20Minimalist%20Style.pdf?alt=media&token=8d787741-37bb-440a-b6c9-c1fd3664bdba',
   ];
-
   late CarouselController _controller;
   int _currentIndex = 0;
 
@@ -58,59 +57,67 @@ class _ResumeState extends State<Resume> {
         title: const Text('Card Viewer'),
       ),
       body: Center(
-        child: CarouselSlider.builder(
-          carouselController: _controller,
-          itemCount: imageUrls.length,
-          options: CarouselOptions(
-            height: 500.0,
-            enableInfiniteScroll: false,
-            viewportFraction: 0.872,
-            enlargeCenterPage: true,
-            pageSnapping: true,
-            scrollPhysics: BouncingScrollPhysics(),
-            onPageChanged: (index, reason) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-          ),
-          itemBuilder: (context, index, realIndex) {
-            return Container(
-              width: double.infinity,
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Card(
-                    elevation: 16.0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.zero,
-                      child: Image.network(
-                        imageUrls[index],
-                        fit: BoxFit.cover,
-                        height: 300.0,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 8.0),
-                  ElevatedButton(
-                    onPressed: () => _launchPDF(pdfFileUrls[_currentIndex]),
-                    child: Text('Download PDF'),
-                  ),
-                ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CarouselSlider.builder(
+              carouselController: _controller,
+              itemCount: imageUrls.length,
+              options: CarouselOptions(
+                height: 500.0,
+                enableInfiniteScroll: false,
+                viewportFraction: 0.872,
+                enlargeCenterPage: true,
+                pageSnapping: true,
+                scrollPhysics: BouncingScrollPhysics(),
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
               ),
-            );
-          },
+              itemBuilder: (context, index, realIndex) {
+                return Container(
+                  width: double.infinity,
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      Card(
+                        elevation: 16.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.zero,
+                          child: Image.network(
+                            imageUrls[index],
+                            fit: BoxFit.cover,
+                            height: 300.0,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 8.0),
+                      Container(
+                        margin: EdgeInsets.only(top: 36.0),
+                        child: ElevatedButton(
+                          onPressed: () => _launchPDF(pdfFileUrls[_currentIndex]),
+                          child: Text('Download PDF'),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: Positioned(
-        bottom: 16.0,
+        bottom: 32.0, // Adjusted the bottom padding
         left: 0,
         right: 0,
         child: Padding(
-          padding: const EdgeInsets.only(bottom: 16.0),
+          padding: const EdgeInsets.only(bottom: 36.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
