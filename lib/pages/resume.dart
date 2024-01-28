@@ -55,7 +55,7 @@ class _ResumeState extends State<Resume> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Card Viewer'),
+        title: const Text('Make You Resume :)'),
       ),
       body: Center(
         child: Column(
