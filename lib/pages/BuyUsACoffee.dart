@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const BuyUsACoffee());
@@ -11,6 +12,7 @@ class BuyUsACoffee extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: DonationPage(),
     );
   }
@@ -30,75 +32,143 @@ class _DonationPageState extends State<DonationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Support Harbour')),
+        title: const Center(child: Text('Support Us :)')),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Card(
           elevation: 4.0,
-          child: Column(
-            children: [
-              ListTile(
-                title: const Text('Donate to Harbour Team'),
-                subtitle: const Text('Help us continue providing free job links'),
-                onTap: () {
-                  setState(() {
-                    isExpanded = !isExpanded;
-                  });
-                },
-              ),
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 500), // Adjusted duration
-                height: isExpanded ? 200 : 0,
-                child: isExpanded
-                    ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Scan the QR code below to donate:',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ListTile(
+                  title: Container(
+                    decoration: BoxDecoration(
+                      // color: Colors.grey[600],
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(16.0),
                     ),
-                    const SizedBox(height: 10),
-                    Container(
-                      height: 150,
-                      width: 150, // Set the width to make it appear at the center both height and width-wise
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/img/bmc_qr.png'),
-                          fit: BoxFit.contain,
-                        ),
+                    padding: const EdgeInsets.all(8),
+                    child: const Text(
+                      'Donate to Harbour Team',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
+                      textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      'Can\'t scan the QR code? Click here to donate:',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 5),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(8),
+                  ),
+                  subtitle: Container(
+                    // color: Colors.lightBlue[100],
+                    padding: const EdgeInsets.all(8),
+                    child: const Text(
+                      'By supporting us, you\'re fueling the journey of Harbour—a platform committed to providing free job links, helping individuals navigate their career seas. Your contribution ensures that we continue to empower and assist countless individuals in discovering new opportunities. Together, let\'s make a positive impact on careers and transform lives. Thank you for being a crucial part of the Harbour community!',
+                      style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        // color: Colors.grey[600],
+                        color: Colors.black,
                       ),
-                      padding: const EdgeInsets.all(8),
-                      child: InkWell(
-                        onTap: () {
-                          // Handle link tap
-                          if (kDebugMode) {
-                            print('Opening donation link');
-                          }
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  onTap: () {
+                    setState(() {
+                      isExpanded = !isExpanded;
+                    });
+                  },
+                ),
+                ListTile(
+                  title: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      // color: Colors.grey[600], // Darker shade of grey for background
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    padding: const EdgeInsets.all(8),
+                    child: const Text(
+                      'Tap to reveal the QR code:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  subtitle: Container(
+                    // color: Colors.lightBlue[100],
+                    // color: Colors.grey[600],
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      'Help us continue providing free job links',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  onTap: () {
+                    setState(() {
+                      isExpanded = !isExpanded;
+                    });
+                  },
+                ),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 500),
+                  height: isExpanded ? 250 : 0,
+                  child: isExpanded
+                      ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 10),
+                      GestureDetector(
+                        onVerticalDragDown: (_) {
+                          // Handle drag down event if needed
                         },
-                        child: const Text(
-                          'https://www.buymeacoffee.com/rv5393982t',
-                          style: TextStyle(color: Colors.white, decoration: TextDecoration.underline),
+                        child: Container(
+                          height: 150,
+                          width: 150,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/img/bmc_qr.png'),
+                              fit: BoxFit.contain,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                )
-                    : Container(),
-              ),
-            ],
+                      const SizedBox(height: 10),
+                      const Text(
+                        'Can\'t scan the QR code? Click here to donate:',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 5),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        child: InkWell(
+                          onTap: () {
+                            launch('https://www.buymeacoffee.com/rv5393982t');
+                          },
+                          child: const Text(
+                            'https://www.buymeacoffee.com/rv5393982t',
+                            style: TextStyle(
+                              color: Colors.white,
+                              decoration: TextDecoration.underline,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                      : Container(),
+                ),
+              ],
+            ),
           ),
         ),
       ),
