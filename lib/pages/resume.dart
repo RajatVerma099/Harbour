@@ -139,7 +139,7 @@ class _ResumeState extends State<Resume> {
                     ),
                   );
                 },
-                child: Text('Go to Next Page'),
+                child: Text('Make Your Resume Now !!!\n                  Click :)'),
               ),
             ),
           ],
