@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:harbour/pages/website_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
@@ -108,6 +109,38 @@ class _ResumeState extends State<Resume> {
                   ),
                 );
               },
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 6.0),
+              child: ElevatedButton(
+
+                onPressed: () {
+                  // Navigate to the next page with custom page transition
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) {
+                        return WebsitePage();
+                      },
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                        const begin = Offset(0.0, 1.0);
+                        const end = Offset.zero;
+                        const curve = Curves.easeInOutQuart;
+
+                        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                        var offsetAnimation = animation.drive(tween);
+
+                        return SlideTransition(
+                          position: offsetAnimation,
+                          child: child,
+                        );
+                      },
+                    ),
+                  );
+                },
+                child: Text('Go to Next Page'),
+              ),
             ),
           ],
         ),
