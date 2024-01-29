@@ -86,11 +86,30 @@ class _OnBoardState extends State<OnBoard> {
             return Transform.translate(
               offset: Offset(xOffset, 0.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Image.asset(screens[index].img),
+                  Text(
+                    screens[index].text,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 27.0,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Poppins',
+                      color: Colors.black,
+                    ),
+                  ),
+                  Text(
+                    screens[index].desc,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 14.0,
+                      fontFamily: 'Montserrat',
+                      color: Colors.black,
+                    ),
+                  ),
                   SizedBox(
                     height: 10.0,
                     child: ListView.builder(
@@ -113,25 +132,6 @@ class _OnBoardState extends State<OnBoard> {
                           ],
                         );
                       },
-                    ),
-                  ),
-                  Text(
-                    screens[index].text,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 27.0,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Poppins',
-                      color: Colors.black,
-                    ),
-                  ),
-                  Text(
-                    screens[index].desc,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 14.0,
-                      fontFamily: 'Montserrat',
-                      color: Colors.black,
                     ),
                   ),
                 ],
