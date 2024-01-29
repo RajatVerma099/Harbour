@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../drawer/main_drawer.dart';
 import '../tools/navigation.dart';
-import 'resume_maker.dart';
+import 'sample_resume_page.dart';
 import 'show_data.dart';
 
 class MyHomePage extends StatelessWidget {

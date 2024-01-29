@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../global_constants.dart';
-import '../pages/website_page.dart';
+import 'resume_maker_websites_page.dart';
 import '../tools/link_tools.dart';
 
 class Resume extends StatefulWidget {
@@ -82,13 +82,14 @@ class _ResumeState extends State<Resume> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                   imageUrls.length,
-                      (index) => Container(
+                  (index) => Container(
                     width: 8.0,
                     height: 8.0,
                     margin: const EdgeInsets.symmetric(horizontal: 4.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.grey.withOpacity(index == _currentIndex ? 1.0 : 0.4),
+                      color: Colors.grey
+                          .withOpacity(index == _currentIndex ? 1.0 : 0.4),
                     ),
                   ),
                 ),
@@ -106,11 +107,13 @@ class _ResumeState extends State<Resume> {
               pageBuilder: (context, animation, secondaryAnimation) {
                 return WebsitePage();
               },
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
                 const begin = Offset(0.0, 1.0);
                 const end = Offset.zero;
                 const curve = Curves.easeInOutQuart;
-                var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                var tween = Tween(begin: begin, end: end)
+                    .chain(CurveTween(curve: curve));
                 var offsetAnimation = animation.drive(tween);
                 return SlideTransition(
                   position: offsetAnimation,
@@ -119,7 +122,7 @@ class _ResumeState extends State<Resume> {
               },
             ),
           );
-        }, 
+        },
         label: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

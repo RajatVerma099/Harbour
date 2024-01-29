@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:harbour/firebase/firebase_options.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'pages/home_page.dart';
@@ -8,7 +9,9 @@ import 'pages/onboard_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform
+  );
   OneSignal.initialize("56c94a7a-618b-41d6-8db3-955968baf359");
   runApp(MyApp());
 }
@@ -21,7 +24,6 @@ class MyApp extends StatelessWidget {
       title: 'Harbour',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.deepPurple),
-        // Adjust other theme properties as needed
       ),
       home: AnimatedSplashScreen(
         splash: Image.asset('assets/img/infinity.gif', fit: BoxFit.cover),
@@ -61,9 +63,6 @@ class _MyAppScreenState extends State<MyAppScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Harbour',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: isViewed != 0 ? OnBoard() : const MyHomePage(title: "Welcome Seeker !!"),
     );
   }

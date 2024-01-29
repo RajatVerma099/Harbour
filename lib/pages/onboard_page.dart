@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:harbour/tools/navigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,26 +37,37 @@ class _OnBoardState extends State<OnBoard> {
     print(prefs.getInt('onBoard'));
   }
 
+  Widget skipOnboardButton () {
+    return TextButton(
+      onPressed: () {
+        _storeOnboardInfo();
+        jumpTo(const MyHomePage(title: "Welcome Seeker !!"), context);
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        decoration: BoxDecoration(
+          // color: Colors.grey[600],
+          color: ThemeData().primaryColor,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Text(
+          "Skip",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0.0,
         actions: [
-          TextButton(
-            onPressed: () {
-              _storeOnboardInfo();
-              jumpTo(const MyHomePage(title: "Welcome Seeker !!"), context);
-            },
-            child: const Text(
-              "Skip",
-              style: TextStyle(
-                color: Colors.black,
-              ),
-            ),
-          )
+          skipOnboardButton(),
         ],
       ),
       body: Padding(
@@ -70,7 +83,6 @@ class _OnBoardState extends State<OnBoard> {
           },
           itemBuilder: (_, index) {
             double xOffset = (index - currentIndex) * MediaQuery.of(context).size.width;
-
             return Transform.translate(
               offset: Offset(xOffset, 0.0),
               child: Column(
@@ -122,51 +134,42 @@ class _OnBoardState extends State<OnBoard> {
                       color: Colors.black,
                     ),
                   ),
-                  InkWell(
-                    onTap: () async {
-                      print(index);
-                      if (index == screens.length - 1) {
-                        await _storeOnboardInfo();
-                        jumpTo(const MyHomePage(title: "Welcome Seeker !"), context);
-                      }
-
-                      _pageController.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.linear,
-                      );
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: const Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "Next",
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 15.0,
-                          ),
-                          Icon(
-                            Icons.arrow_forward_sharp,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
                 ],
               ),
             );
           },
         ),
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          FloatingActionButton(
+            onPressed: () async {
+              print(currentIndex);
+              if (currentIndex != 0) {
+                _pageController.previousPage(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.linear,
+                );
+              }
+            },
+            child: const Icon(Icons.arrow_left_rounded)
+          ),
+          FloatingActionButton(
+            onPressed: () async {
+              print(currentIndex);
+              if (currentIndex == screens.length - 1) {
+                await _storeOnboardInfo();
+                jumpTo(const MyHomePage(title: "Welcome Seeker !"), context);
+              }
+              _pageController.nextPage(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.linear,
+              );
+            },
+            child: const Icon(Icons.arrow_right_rounded)
+          ),
+        ],
       ),
     );
   }
