@@ -4,6 +4,6 @@ launchURL(String url) async {
     try {
       await launch(url);
     } catch (e) {
-      print("Error launching PDF: $e");
+      print("Error launching Link: $e");
     }
   }
