@@ -1,3 +1,4 @@
+import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -180,6 +181,7 @@ class VerticalCarousel extends StatelessWidget {
           itemBuilder: (BuildContext context, int index, int realIndex) {
             return VideoCard(
               videoInfo: videoData[index],
+
             );
           },
         ),
@@ -204,50 +206,55 @@ class VideoCard extends StatelessWidget {
         mute: false,
       ),
     );
-
-    return Column(
-      children: [
-        YoutubePlayer(
-          controller: controller,
-          showVideoProgressIndicator: true,
-          progressIndicatorColor: Colors.blueAccent,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                videoInfo.title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 8.0),
-              Text(
-                videoInfo.subtitle,
-                style: const TextStyle(
-                  fontSize: 14.0,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: () {
-                  // Handle button click to redirect to the resources
-                  // You can use videoInfo.link for navigation
-                },
-                child: const Text('Click to Access Resources'),
-              ),
-            ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          YoutubePlayer(
+            controller: controller,
+            showVideoProgressIndicator: true,
+            progressIndicatorColor: Colors.blueAccent,
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  videoInfo.title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                  ),
+                ),
+                SizedBox(height: 4.0),
+                Text(
+                  videoInfo.subtitle,
+                  style: const TextStyle(fontSize: 14.0),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Handle "Read More" action (e.g., show full subtitle or redirect to video)
+                  },
+                  child: const Text("Read More"),
+                ),
+                SizedBox(height: 16.0),
+                ElevatedButton(
+                    onPressed: () {
+                      // Handle button click to redirect to the resources
+                      // You can use videoInfo.link for navigation
+                    }, child: null,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
+
 
 class VideoInfo {
   final String title;
