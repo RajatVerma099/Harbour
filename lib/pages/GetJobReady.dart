@@ -180,7 +180,7 @@ class VerticalCarousel extends StatelessWidget {
           options: CarouselOptions(
             height: 200, // Adjust the height of the inner carousel as needed
             aspectRatio: 16 / 9,
-            viewportFraction: 0.8,
+            viewportFraction: 0.6,
             enlargeCenterPage: true,
             enableInfiniteScroll: false,
             scrollDirection: Axis.horizontal,

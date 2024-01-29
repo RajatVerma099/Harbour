@@ -1,5 +1,20 @@
+import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: TechnologiesPage(),
+    );
+  }
+}
 
 class TechnologiesPage extends StatefulWidget {
   const TechnologiesPage({Key? key}) : super(key: key);
@@ -28,7 +43,7 @@ class _TechnologiesPageState extends State<TechnologiesPage> {
                 });
               },
             ),
-            SizedBox(height: 46),
+            const SizedBox(height: 46),
             PageIndicator(currentIndex: _currentIndex),
           ],
         ),
@@ -84,13 +99,13 @@ class TechnologyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
+      elevation: 9,
       shadowColor: Colors.grey[300],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.85,
+        width: MediaQuery.of(context).size.width * 0.9,
         height: MediaQuery.of(context).size.height * 0.9,
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
@@ -100,13 +115,15 @@ class TechnologyCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.network(
-              technology.imageUrl,
+            Container(
               width: MediaQuery.of(context).size.width * 0.7,
-              height: MediaQuery.of(context).size.height * 0.7,
-              fit: BoxFit.contain,
+              height: MediaQuery.of(context).size.height * 0.1,
+              child: Image.network(
+                technology.imageUrl,
+                fit: BoxFit.contain,
+              ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               technology.technologyName,
               style: const TextStyle(
@@ -162,30 +179,23 @@ class Technology {
 final List<Technology> technologies = [
   Technology(
     technologyName: 'Flutter',
-    imageUrl: 'https://logowik.com/content/uploads/images/flutter5786.jpg',
+    imageUrl:    'https://drive.google.com/uc?export=download&id=1tilULEXyVwNedELNFOzTNck3lgTRH7GJ',
   ),
   Technology(
     technologyName: 'Dart',
-    imageUrl: 'https://logowik.com/content/uploads/images/google-dart2862.jpg',
+    imageUrl:    'https://drive.google.com/uc?export=download&id=1tgRuk96qFAmZr4IJ-QgVNExzXjVS9dV_',
   ),
   Technology(
     technologyName: 'Firebase',
-    imageUrl: 'https://logowik.com/content/uploads/images/built-with-firebase-light4542.jpg',
+    imageUrl:    'https://drive.google.com/uc?export=download&id=1tf3d2aHM5xM8_wMfG2z6S958COFVhvAu',
   ),
   Technology(
     technologyName: 'Cloud Firestore',
-    imageUrl: 'https://static.javatpoint.com/tutorial/firebase/images/firebase-firestore.png',
+    imageUrl:    'https://drive.google.com/uc?export=download&id=1tf27Z9O52A51IIvlqZ8Z5-bbxXaxgcRt',
   ),
   Technology(
     technologyName: 'One Signal',
-    imageUrl: 'https://sportal365.com/wp-content/uploads/2022/10/Asset-3.png',
+    imageUrl:    'https://drive.google.com/uc?export=download&id=1tg8co2V4gni9HGB9DHR4F_-Qp6Plkgg8',
   ),
 ];
 
-void main() {
-  runApp(
-    MaterialApp(
-      home: TechnologiesPage(),
-    ),
-  );
-}
