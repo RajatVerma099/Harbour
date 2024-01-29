@@ -31,27 +31,27 @@ class MainDrawer extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         color: Colors.grey[900],
         // Dark Background Color
         child: Container(
-          padding: padding.add(EdgeInsets.symmetric(vertical: 20)),
+          padding: padding.add(const EdgeInsets.symmetric(vertical: 20)),
           child: Row(
             children: [
               CircleAvatar(
                   radius: 30, backgroundImage: NetworkImage(imageUrl)),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     name,
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    style: const TextStyle(fontSize: 20, color: Colors.white),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     email,
-                    style: TextStyle(fontSize: 14, color: Colors.white),
+                    style: const TextStyle(fontSize: 14, color: Colors.white),
                   ),
                 ],
               ),
@@ -127,7 +127,7 @@ class MainDrawer extends StatelessWidget {
   Widget buildSupportButton(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 10), // Adjusted margin
+      margin: const EdgeInsets.symmetric(horizontal: 10), // Adjusted margin
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(

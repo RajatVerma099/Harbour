@@ -52,7 +52,7 @@ class MyHomePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20.0), // More curved edges
                 ),
               ),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.list),
@@ -73,7 +73,7 @@ class MyHomePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20.0), // More curved edges
                 ),
               ),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.document_scanner_rounded),
@@ -87,14 +87,14 @@ class MyHomePage extends StatelessWidget {
           SizedBox(
             width: buttonWidth,
             child: ElevatedButton(
-              onPressed: () => goTo(TechnologiesPage(), context),
+              onPressed: () => goTo(const TechnologiesPage(), context),
               style: ElevatedButton.styleFrom(
                 primary: Colors.deepPurple[200], // Light hue of purple
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0), // More curved edges
                 ),
               ),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.document_scanner_rounded),
