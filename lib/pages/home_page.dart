@@ -19,14 +19,18 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(title),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Welcome to Harbour, your harbor for navigating the job market! We\'re here to guide you on your quest for meaningful employment. Let\'s set sail on a journey together to discover personalized resources for your career aspirations.',
+            Image.network("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWNrZHZydGF5OTAxcnkybm5yOHAzNHlqazd3dmFvMjN0dzJkbGFxNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tnlqgsV9gbihbO0/giphy.gif"),
+            const Text(
+              "Can't find a job? \n\nWelcome to Harbour, your harbor for navigating the job market! We\'re here to guide you on your quest for meaningful employment. Let\'s set sail on a journey together to discover personalized resources for your career aspirations.",
               textAlign: TextAlign.center,
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+              ),
             ),
           ],
         ),
