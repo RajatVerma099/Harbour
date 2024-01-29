@@ -22,7 +22,8 @@ class DevPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ThemeData().primaryColor,
+      // backgroundColor: ThemeData().primaryColor,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Column(
@@ -46,6 +47,7 @@ class DevPage extends StatelessWidget {
           ],
         ),
         centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.grey),
       ),
       body: Container(
         alignment: Alignment.center,

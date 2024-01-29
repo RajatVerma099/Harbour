@@ -154,8 +154,9 @@ class MainDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return NavigationDrawer(
-      backgroundColor: ThemeData().primaryColor,
-      children: [
+      // backgroundColor: ThemeData().primaryColor,
+        backgroundColor: Colors.black,
+        children: [
         intro(),
         const Divider(
           indent: 30,
