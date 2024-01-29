@@ -9,11 +9,9 @@ class GetJobReady extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       debugShowCheckedModeBanner: false,
       title: 'Get Job Ready',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: MyHomePage(),
     );
   }
@@ -25,7 +23,6 @@ class MyHomePage extends StatelessWidget {
     'Query Languages',
     'Programming Languages',
     'Aptitude with Reasoning',
-    // Add more main titles as needed
   ];
 
   final List<List<VideoInfo>> videoData = [
@@ -55,7 +52,7 @@ class MyHomePage extends StatelessWidget {
         subtitle: 'In this playlist we will solve and understand popular problems on DP asked by Top Companies like Amazon, Meta, Google, Microsoft, Adobe, Netflix, and many more ...',
         link: 'https://youtu.be/smTnSl6UKi0?si=oihhK9KDHFXw-xar',
       ),
-      // Add more videos for the first main title
+
     ],
     [
       VideoInfo(
@@ -73,7 +70,7 @@ class MyHomePage extends StatelessWidget {
         subtitle: 'One of the most concise and apt course for mysql.',
         link: 'https://youtu.be/us1XyayQ6fU?si=DzE0M8da8mozikZt',
       ),
-      // Add more videos for the second main title
+
     ],
     [
       VideoInfo(
@@ -115,23 +112,31 @@ class MyHomePage extends StatelessWidget {
         link: 'https://www.youtube.com/live/bOD5b1GV1Z8?si=DdUgMnBGaJUnLaiJ',
       ),
     ]
-    // Add more main titles with their respective video data
+
   ];
 
   MyHomePage({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return MaterialApp(
+      // appBar: AppBar(
+      debugShowCheckedModeBanner: false,
+
+      // ),
+      home: Scaffold(
+        appBar: AppBar(
         title: const Text('Get Job Ready'),
-      ),
-      body: CarouselSlider.builder(
+        ),
+      body:Container(
+      color: Colors.grey[500],
+        child:
+        CarouselSlider.builder(
         itemCount: mainTitles.length,
         options: CarouselOptions(
           height: MediaQuery.of(context).size.height,
           aspectRatio: 16 / 9,
-          viewportFraction: 0.8,
+          viewportFraction: 0.5,
           enlargeCenterPage: true,
           enableInfiniteScroll: false,
           scrollDirection: Axis.vertical,
@@ -143,6 +148,8 @@ class MyHomePage extends StatelessWidget {
           );
         },
       ),
+    ),
+    ),
     );
   }
 }
@@ -206,8 +213,11 @@ class VideoCard extends StatelessWidget {
         mute: false,
       ),
     );
-    return SingleChildScrollView(
-      child: Column(
+    return Container(
+        // height: 900,
+        // color: Colors.grey,
+        child:  SingleChildScrollView(
+        child: Column(
         children: [
           YoutubePlayer(
             controller: controller,
@@ -232,25 +242,14 @@ class VideoCard extends StatelessWidget {
                   style: const TextStyle(fontSize: 14.0),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Handle "Read More" action (e.g., show full subtitle or redirect to video)
-                  },
-                  child: const Text("Read More"),
-                ),
-                SizedBox(height: 16.0),
-                ElevatedButton(
-                    onPressed: () {
-                      // Handle button click to redirect to the resources
-                      // You can use videoInfo.link for navigation
-                    }, child: null,
-                ),
+                ),/////////////////////////////////////////////////////////////////////yr yhi pr h bas visible nhi h due to ht factor
+
               ],
             ),
           ),
         ],
       ),
+        ),
     );
   }
 }
