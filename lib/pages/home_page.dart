@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../drawer/main_drawer.dart';
 import '../tools/navigation.dart';
+import 'GetJobReady.dart';
 import 'TechnologiesPage.dart';
 import 'sample_resume_page.dart';
 import 'show_data.dart';
@@ -100,6 +101,27 @@ class MyHomePage extends StatelessWidget {
                   Icon(Icons.document_scanner_rounded),
                   SizedBox(width: 8),
                   Text("Technologies Used"),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: buttonWidth,
+            child: ElevatedButton(
+              onPressed: () => goTo(GetJobReady(), context),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.deepPurple[200], // Light hue of purple
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0), // More curved edges
+                ),
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.document_scanner_rounded),
+                  SizedBox(width: 8),
+                  Text("Get Job Ready"),
                 ],
               ),
             ),

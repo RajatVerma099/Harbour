@@ -91,7 +91,7 @@ class TechnologyCard extends StatelessWidget {
       ),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.85,
-        height: MediaQuery.of(context).size.height * 0.9, // Increased height
+        height: MediaQuery.of(context).size.height * 0.9,
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -103,8 +103,8 @@ class TechnologyCard extends StatelessWidget {
             Image.network(
               technology.imageUrl,
               width: MediaQuery.of(context).size.width * 0.7,
-              height: MediaQuery.of(context).size.height * 0.7, // Increased height
-              fit: BoxFit.contain, // Adjusted to contain
+              height: MediaQuery.of(context).size.height * 0.7,
+              fit: BoxFit.contain,
             ),
             SizedBox(height: 16),
             Text(
