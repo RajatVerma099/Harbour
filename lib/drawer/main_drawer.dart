@@ -13,7 +13,7 @@ class MainDrawer extends StatelessWidget {
       '🚀 Thanks for Choosing Harbour! 🚀\n\nHey Harbour Explorers,\n\n\n  Big thanks for setting sail with us! Your journey matters. 😊 Loved it? Share the vibes! Spread the word about Harbour and let\'s help more folks navigate their career seas together.\n\n Cheers,\nThe Harbour Crew',
       style: TextStyle(
         fontSize: 17.0,
-        color: Colors.white54,
+        color: Colors.black,
       ),
     );
   }
@@ -75,7 +75,7 @@ class MainDrawer extends StatelessWidget {
           style: TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w500,
-            color: Colors.white54,
+            color: Colors.black,
           ),
         ),
       ),
@@ -155,7 +155,7 @@ class MainDrawer extends StatelessWidget {
 
     return NavigationDrawer(
       // backgroundColor: ThemeData().primaryColor,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         children: [
         intro(),
         const Divider(

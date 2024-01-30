@@ -12,7 +12,7 @@ class GetJobReady extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       title: 'Get Job Ready',
-      home: MyHomePage(),
+      home: MyHomePage(title: '',),
     );
   }
 }
@@ -115,7 +115,7 @@ class MyHomePage extends StatelessWidget {
 
   ];
 
-  MyHomePage({Key? key});
+  MyHomePage({Key? key, required String title});
 
   @override
   Widget build(BuildContext context) {

@@ -44,6 +44,9 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             color: Colors.white,
           ),
         ),
+        iconTheme: const IconThemeData(
+          color: Colors.white, // Change the icon color to white
+        ),
       ),
       body: Stack(
         children: [

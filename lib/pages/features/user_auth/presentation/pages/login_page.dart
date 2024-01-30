@@ -4,33 +4,38 @@ import 'package:harbour/pages/home_page.dart';
 import 'package:harbour/tools/navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:video_player/video_player.dart';
 import '../../../../global/common/toast.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage>
     with SingleTickerProviderStateMixin {
+  late VideoPlayerController _videoPlayerController;
   bool _isSigning = false;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 5), // Adjust the duration as needed
-    )..repeat(reverse: true); // Oscillate between left and right
+    _videoPlayerController = VideoPlayerController.asset(
+      'assets/launch/signin.mp4', // Replace with your video asset path
+    )..initialize().then((_) {
+      setState(() {});
+      _videoPlayerController.play(); // Autoplay
+      _videoPlayerController.setVolume(0.0); // Mute video
+      _videoPlayerController.setLooping(true); // Loop video
+    });
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _videoPlayerController.dispose();
     super.dispose();
   }
 
@@ -39,90 +44,61 @@ class _LoginPageState extends State<LoginPage>
     return Scaffold(
       body: Stack(
         children: [
-          _buildBackgroundImage(),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    _signInWithGoogle();
-                  },
-                  child: Container(
-                    width: 250,
-                    height: 45,
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(FontAwesomeIcons.google, color: Colors.white),
-                          SizedBox(width: 5),
-                          Text(
-                            "Sign in with Google",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+          _videoPlayerController.value.isInitialized
+              ? AspectRatio(
+            aspectRatio: _videoPlayerController.value.aspectRatio,
+            child: VideoPlayer(_videoPlayerController),
+          )
+              : Container(), // Placeholder for video
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            top: 0,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Spacer to push the button to the center of the screen
+                  Spacer(),
+                  GestureDetector(
+                    onTap: () {
+                      _signInWithGoogle();
+                    },
+                    child: Container(
+                      width: 250,
+                      height: 45,
+                      margin: const EdgeInsets.only(bottom: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(FontAwesomeIcons.google, color: Colors.white),
+                            SizedBox(width: 5),
+                            Text(
+                              "Sign in with Google",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
       ),
     );
   }
-
-  Widget _buildBackgroundImage() {
-    double imageHeight = MediaQuery.of(context).size.height * 3 / 5;
-
-    return Stack(
-      children: [
-        ClipPath(
-          clipper: CurvedBackgroundClipper(),
-          child: Container(
-            height: imageHeight,
-            decoration: BoxDecoration(
-              color: Colors.black,
-            ),
-          ),
-        ),
-        ClipPath(
-          clipper: CurvedBackgroundClipper(),
-          child: Container(
-            height: imageHeight+20,
-            child: AnimatedBuilder(
-              animation: _controller,
-              builder: (context, child) {
-                return Transform(
-                  alignment: Alignment.center,
-                  transform: Matrix4.rotationY(_controller.value *0.8), //3.1416),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/launch/logo_launch.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-
 
   _signInWithGoogle() async {
     final GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -151,22 +127,5 @@ class _LoginPageState extends State<LoginPage>
       print("======================================================");
       print(e);
     }
-  }
-}
-
-class CurvedBackgroundClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final Path path = Path();
-    path.lineTo(0, size.height * 0.6);
-    path.quadraticBezierTo(
-        size.width / 2, size.height, size.width, size.height * 0.6);
-    path.lineTo(size.width, 0);
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
   }
 }
