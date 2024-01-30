@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:harbour/firebase/firebase_options.dart';
+import 'package:harbour/pages/features/user_auth/presentation/pages/login_page.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'pages/home_page.dart';
@@ -33,7 +34,9 @@ class MyApp extends StatelessWidget {
         duration: 2000,
         nextScreen: MyAppScreen(),
       ),
+
     );
+
   }
 }
 
@@ -63,7 +66,7 @@ class _MyAppScreenState extends State<MyAppScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Harbour',
-      home: isViewed != 0 ? OnBoard() : const MyHomePage(title: "Welcome Seeker !!"),
+      home: isViewed != 0 ? OnBoard() : const LoginPage(),
     );
   }
 }

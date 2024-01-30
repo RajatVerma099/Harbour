@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../drawer/main_drawer.dart';
 import '../tools/navigation.dart';
 import 'GetJobReady.dart';
@@ -126,6 +125,27 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
           ),
+          // const SizedBox(height: 10),
+          // SizedBox(
+          //   width: buttonWidth,
+          //   child: ElevatedButton(
+          //     onPressed: () => goTo(LoginPage(), context),
+          //     style: ElevatedButton.styleFrom(
+          //       primary: Colors.deepPurple[200], // Light hue of purple
+          //       shape: RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.circular(20.0), // More curved edges
+          //       ),
+          //     ),
+          //     child: const Row(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         Icon(Icons.document_scanner_rounded),
+          //         SizedBox(width: 8),
+          //         Text("Google sign in"),
+          //       ],
+          //     ),
+          //   ),
+          // ),
         ],
       ),
       drawer: const MainDrawer(),

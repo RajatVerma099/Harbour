@@ -49,6 +49,10 @@ dependencies:
   youtube_player_flutter: ^8.1.2
   dio: ^4.0.4
   path_provider: ^2.0.8
+  font_awesome_flutter: ^10.6.0
+  google_sign_in: ^6.1.5
+  fluttertoast: ^8.2.2
+  firebase_auth: ^4.6.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
