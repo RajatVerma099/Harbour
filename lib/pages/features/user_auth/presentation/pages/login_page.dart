@@ -207,6 +207,8 @@ class _LoginPageState extends State<LoginPage> {
 
     }catch(e) {
 showToast(message: "some error occured $e");
+print("======================================================");
+print(e);
     }
 
 

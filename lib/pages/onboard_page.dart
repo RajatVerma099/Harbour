@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:harbour/pages/features/user_auth/presentation/pages/login_page.dart';
 import 'package:harbour/tools/navigation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../global_constants.dart';
@@ -160,7 +161,7 @@ class _OnBoardState extends State<OnBoard> {
               print(currentIndex);
               if (currentIndex == screens.length - 1) {
                 await _storeOnboardInfo();
-                jumpTo(const MyHomePage(title: "Welcome Seeker !"), context);
+                jumpTo(const LoginPage(), context);
               }
               _pageController.nextPage(
                 duration: const Duration(milliseconds: 500),
