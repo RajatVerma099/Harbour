@@ -79,6 +79,7 @@ flutter:
   assets:
     - assets/img/
     - assets/icons/
+    - assets/launch/
 #    - assets/icons/canva.png
 #    - assets/icons/cvmaker.png
 #    - assets/icons/zety.png

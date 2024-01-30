@@ -5,7 +5,6 @@ import 'package:harbour/firebase/firebase_options.dart';
 import 'package:harbour/pages/features/user_auth/presentation/pages/login_page.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'pages/home_page.dart';
 import 'pages/onboard_page.dart';
 
 void main() async {
