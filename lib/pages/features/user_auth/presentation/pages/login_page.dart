@@ -41,12 +41,14 @@ class _LoginPageState extends State<LoginPage>
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: [
           _videoPlayerController.value.isInitialized
               ? AspectRatio(
-            aspectRatio: _videoPlayerController.value.aspectRatio,
+            aspectRatio: width/height,
             child: VideoPlayer(_videoPlayerController),
           )
               : Container(), // Placeholder for video
