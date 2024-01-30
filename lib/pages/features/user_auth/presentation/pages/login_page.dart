@@ -82,33 +82,47 @@ class _LoginPageState extends State<LoginPage>
   }
 
   Widget _buildBackgroundImage() {
-    return ClipPath(
-      clipper: CurvedBackgroundClipper(),
-      child: Container(
-        height: MediaQuery.of(context).size.height * 3 / 5,
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, child) {
-            return Transform(
-              alignment: Alignment.center,
-              transform: Matrix4.rotationY(_controller.value * 3.1416),
-              child: ClipPath(
-                clipper: CurvedBackgroundClipper(),
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/launch/logo_launch.jpg"),
-                      fit: BoxFit.cover,
+    double imageHeight = MediaQuery.of(context).size.height * 3 / 5;
+
+    return Stack(
+      children: [
+        ClipPath(
+          clipper: CurvedBackgroundClipper(),
+          child: Container(
+            height: imageHeight,
+            decoration: BoxDecoration(
+              color: Colors.black,
+            ),
+          ),
+        ),
+        ClipPath(
+          clipper: CurvedBackgroundClipper(),
+          child: Container(
+            height: imageHeight+20,
+            child: AnimatedBuilder(
+              animation: _controller,
+              builder: (context, child) {
+                return Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationY(_controller.value *0.8), //3.1416),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/launch/logo_launch.jpg"),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-              ),
-            );
-          },
+                );
+              },
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
+
+
 
   _signInWithGoogle() async {
     final GoogleSignIn _googleSignIn = GoogleSignIn(
