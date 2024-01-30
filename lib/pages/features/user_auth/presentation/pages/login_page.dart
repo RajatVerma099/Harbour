@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:harbour/pages/features/user_auth/presentation/pages/sign_up_page.dart';
+import 'package:harbour/pages/home_page.dart';
+import 'package:harbour/tools/navigation.dart';
 import '../../../../global/common/toast.dart';
 import '../../firebase_auth_implementation/firebase_auth_services.dart';
 import '../widgets/form_container_widget.dart';
@@ -181,7 +183,9 @@ class _LoginPageState extends State<LoginPage> {
 
   _signInWithGoogle()async{
 
-    final GoogleSignIn _googleSignIn = GoogleSignIn();
+    final GoogleSignIn _googleSignIn = GoogleSignIn(
+      clientId: "1091454301447-9j9tlbl8qir77v62g5sjqmlhjmislghm.apps.googleusercontent.com"
+    );
 
     try {
 
@@ -197,7 +201,8 @@ class _LoginPageState extends State<LoginPage> {
         );
 
         await _firebaseAuth.signInWithCredential(credential);
-        Navigator.pushNamed(context, "/home");
+        var username = googleSignInAccount.displayName;
+        jumpTo(MyHomePage(title: "Welcome $username"), context);
       }
 
     }catch(e) {
