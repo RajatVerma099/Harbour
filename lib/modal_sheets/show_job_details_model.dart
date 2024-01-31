@@ -37,11 +37,28 @@ class JobDetailsModal extends StatelessWidget {
       child: ListView(
           // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(title, style: const TextStyle(fontSize: 30,),),
-            Text(company),
+            Text(company,style: TextStyle(fontSize: 30, color: Colors.blueGrey),),
+
             const SizedBox(height: 20),
-            Text(desc),
-            const SizedBox(height: 20),
+
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            const SizedBox(height: 24),
+
+            Text(
+              desc,
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.red,
+              ),
+            ),
+            const SizedBox(height: 24),
             Linkify(
               onOpen: _onOpen,
               text: applyLink,
@@ -49,8 +66,23 @@ class JobDetailsModal extends StatelessWidget {
                 humanize: true,
               ),
             ),
-            Text("Experience: $experience"),
-            Text("At: $location"),
+            const SizedBox(height: 24),
+      Text(
+        "Experience: $experience",
+        style: const TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+        ),
+      ),
+            const SizedBox(height: 24),
+            Text(
+              "At: $location",
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.black54,
+              ),
+            ),
+            const SizedBox(height: 20),
             Text("More Info: $moreInfoLink"),
           ],
         ),
