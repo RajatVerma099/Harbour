@@ -45,6 +45,7 @@ class _ShowDataState extends State<ShowData>{
   Widget build(BuildContext context) {
     var jobs = FirebaseFirestore.instance.collection("Jobs");
     return Scaffold(
+      // backgroundColor: Colors.blueGrey,
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -61,6 +62,7 @@ class _ShowDataState extends State<ShowData>{
         ],
       ),
       appBar: AppBar(
+
         title: const Text("Job Opportunities"),
         centerTitle: true,
       ),

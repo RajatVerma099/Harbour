@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:harbour/pages/future_trends.dart';
 import 'package:harbour/pages/sample_resume_page.dart';
 import 'package:harbour/pages/show_data.dart';
 
@@ -119,9 +120,9 @@ class _MyHomePageState extends State<MyHomePage>
                 buttonSize,
               ),
               _buildButton(
-                const TechnologiesPage(),
+                 future_trends(),
                 Icons.document_scanner_rounded,
-                "Technologies Used",
+                "Future Trends",
                 Colors.grey[800]!,
                 Colors.grey[400]!,
                 buttonSize,
@@ -202,6 +203,7 @@ class _MyHomePageState extends State<MyHomePage>
     );
   }
 }
+
 
 class CurvedBackgroundClipper extends CustomClipper<Path> {
   @override
