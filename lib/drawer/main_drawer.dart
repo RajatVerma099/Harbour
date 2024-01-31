@@ -9,14 +9,29 @@ class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
 
   Widget intro() {
-    return const Text(
-      '🚀 Thanks for Choosing Harbour! 🚀\n\nHey Harbour Explorers,\n\n\n  Big thanks for setting sail with us! Your journey matters. 😊 Loved it? Share the vibes! Spread the word about Harbour and let\'s help more folks navigate their career seas together.\n\n Cheers,\nThe Harbour Crew',
-      style: TextStyle(
-        fontSize: 17.0,
-        color: Colors.black,
+    return Card(
+      elevation: 15,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25),
+      ),
+      color: Colors.grey[900],
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      child: Container(
+        padding: padding.add(const EdgeInsets.symmetric(vertical: 20)),
+        child: Center(
+          child: Text(
+            'Hey Harbour Explorers,\n\n🚀 Thank you for choosing Harbour! 🚀\n\nSet sail with us on this journey that matters. 😊 Enjoyed it? Share the love! Help others navigate their career seas with Harbour.\n\nCheers,\nThe Harbour Crew',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 17.0,
+              color: Colors.white,
+            ),
+          ),
+        ),
       ),
     );
   }
+
 
   Widget buildHeader({
     required String name,
@@ -27,9 +42,9 @@ class MainDrawer extends StatelessWidget {
     InkWell(
       onTap: onClicked,
       child: Card(
-        elevation: 5,
+        elevation: 15,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(45),
         ),
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         color: Colors.grey[900],
@@ -72,12 +87,14 @@ class MainDrawer extends StatelessWidget {
         padding: EdgeInsets.all(8.0),
         child: Text(
           "MEET THE DEVS",
+          textAlign: TextAlign.center, // Align the text to the center
           style: TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w500,
             color: Colors.black,
           ),
         ),
+
       ),
       buildHeader(
         imageUrl: imageUrl1,
@@ -141,8 +158,11 @@ class MainDrawer extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 10), // Adjusted padding
           child: Center(
             child: Text(
-              'Support Us',
-              style: TextStyle(fontSize: 16),
+              'Support Us :)',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white, // Set the text color to white
+              ),
             ),
           ),
         ),
@@ -163,6 +183,7 @@ class MainDrawer extends StatelessWidget {
           endIndent: 30,
         ),
         ...meetTheDevs(context),
+
         const Divider(
           indent: 30,
           endIndent: 30,
