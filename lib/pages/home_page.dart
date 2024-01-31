@@ -31,8 +31,8 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   Widget build(BuildContext context) {
-    double buttonSize = MediaQuery.of(context).size.width * 0.3; // Adjust the size
-    double containerSize = MediaQuery.of(context).size.width * 0.65; // Adjust the size
+    double buttonSize = MediaQuery.of(context).size.width * 0.3;
+    double containerSize = MediaQuery.of(context).size.width * 0.65;
 
     return Scaffold(
       appBar: AppBar(
@@ -44,14 +44,14 @@ class _MyHomePageState extends State<MyHomePage>
           ),
         ),
         iconTheme: const IconThemeData(
-          color: Colors.white, // Change the icon color to white
+          color: Colors.white,
         ),
       ),
-      body: Stack(
-        children: [
-          _buildBackgroundImage(context),
-          SingleChildScrollView(
-            child: Padding(
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            _buildBackgroundImage(context),
+            Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -87,8 +87,8 @@ class _MyHomePageState extends State<MyHomePage>
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Positioned(
@@ -97,39 +97,41 @@ class _MyHomePageState extends State<MyHomePage>
           height: containerSize,
           width: containerSize,
           padding: const EdgeInsets.only(bottom: 1.0),
-
           child: GridView.count(
             crossAxisCount: 2,
-              mainAxisSpacing: 20.0, // Adjust the vertical gap between buttons
-              crossAxisSpacing: 20.0,
+            mainAxisSpacing: 20.0,
+            crossAxisSpacing: 20.0,
             children: [
               _buildButton(
                 const ShowData(),
                 Icons.list,
                 "Show Jobs",
-                Colors.deepPurple[200]!,
-
+                Colors.grey[800]!,
+                Colors.grey[400]!,
                 buttonSize,
               ),
               _buildButton(
                 const Resume(),
                 Icons.document_scanner_rounded,
                 "Resume Maker",
-                Colors.deepPurple[200]!,
+                Colors.grey[800]!,
+                Colors.grey[400]!,
                 buttonSize,
               ),
               _buildButton(
                 const TechnologiesPage(),
                 Icons.document_scanner_rounded,
                 "Technologies Used",
-                Colors.deepPurple[200]!,
+                Colors.grey[800]!,
+                Colors.grey[400]!,
                 buttonSize,
               ),
               _buildButton(
                 const GetJobReady(),
                 Icons.document_scanner_rounded,
                 "Get Job Ready",
-                Colors.deepPurple[200]!,
+                Colors.purple[800]!,
+                Colors.purple[400]!,
                 buttonSize,
               ),
             ],
@@ -158,30 +160,44 @@ class _MyHomePageState extends State<MyHomePage>
       Widget page,
       IconData icon,
       String label,
-      Color color,
+      Color topColor,
+      Color bottomColor,
       double size,
       ) {
     return ElevatedButton(
       onPressed: () => goTo(page, context),
       style: ElevatedButton.styleFrom(
-        primary: color,
+        primary: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0), // Adjust the border radius
+          borderRadius: BorderRadius.circular(30.0),
         ),
+        elevation: 5.0,
+        shadowColor: Colors.black,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon),
-          SizedBox(height: 8),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 12.0, // Adjust the font size
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        child: Ink(
+          child: InkWell(
+            onTap: () => goTo(page, context),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon),
+                SizedBox(height: 8),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 12.0,
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
-            textAlign: TextAlign.center, // Center-align the text
           ),
-        ],
+        ),
       ),
     );
   }
