@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbour/tools/navigation.dart';
+import '../pages/TechnologiesPage.dart';
 import '../pages/dev_page.dart';
 import '../pages/support_us.dart';
 
@@ -170,6 +171,35 @@ class MainDrawer extends StatelessWidget {
     );
   }
 
+  Widget Tech_Used(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(horizontal: 10), // Adjusted margin
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const TechnologiesPage()));
+        },
+        style: ElevatedButton.styleFrom(
+          primary: Colors
+              .grey[900], // Same background color as the cards for Rajat and Mudit
+        ),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(vertical: 10), // Adjusted padding
+          child: Center(
+            child: Text(
+              'Tech Used ',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white, // Set the text color to white
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -189,7 +219,12 @@ class MainDrawer extends StatelessWidget {
           endIndent: 30,
         ),
         buildSupportButton(context),
-      ]
+          const Divider(
+            indent: 30,
+            endIndent: 30,
+          ),
+          Tech_Used(context),
+        ]
     );
   }
 }
