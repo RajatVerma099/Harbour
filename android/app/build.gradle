@@ -56,12 +56,12 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
+
     buildTypes {
         release {
             signingConfig signingConfigs.release
         }
     }
-
 
     lintOptions {
         disable 'InvalidPackage'
@@ -71,17 +71,14 @@ android {
         pickFirst 'lib/x86/libflutter.so'
         pickFirst 'lib/x86_64/libflutter.so'
     }
-
-    // Add the following line to specify the namespace
-    namespace 'com.example.harbour' // Change to your desired namespace
+    namespace 'com.example.harbour'
 }
 
 dependencies {
     implementation platform('com.google.firebase:firebase-bom:32.7.1')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.android.support:multidex:1.0.3'
-
-    implementation 'com.google.gms:google-services:4.3.10' // Use a version compatible with Java 8
+    implementation 'com.google.gms:google-services:4.3.10'
 }
 
 flutter {
