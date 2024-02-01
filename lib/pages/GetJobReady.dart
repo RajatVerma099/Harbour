@@ -169,7 +169,7 @@ class MyHomePage extends StatelessWidget {
       VideoInfo(
         title: 'Cyber Security Full course - 11 Hours',
         subtitle: 'This Edureka video on "Cyber Security Full Course" will help you understand and learn the fundamentals of Cyber Security. This Cyber Security Tutorial is ideal for both beginners as well as professionals who want to master the Cyber Security concepts',
-        link: 'https://www.youtube.com/live/lpa8uy4DyMo?si=HNry6SxO3uNgGEMb',
+        link: 'https://www.youtube.com/live/lpa8uy4DyMo?si=s61-bZEBQ17GX1pH',
       ),
 
     ]
