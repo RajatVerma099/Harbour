@@ -12,6 +12,7 @@ class GetJobReady extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       title: 'Get Job Ready',
+
       home: MyHomePage(title: '',),
     );
   }
@@ -23,6 +24,9 @@ class MyHomePage extends StatelessWidget {
     'Query Languages',
     'Programming Languages',
     'Aptitude with Reasoning',
+    'Be a Dev',
+    'AI / ML',
+    'Future Techs'
   ];
 
   final List<List<VideoInfo>> videoData = [
@@ -111,6 +115,63 @@ class MyHomePage extends StatelessWidget {
         subtitle: 'A complete playlist - Aptitude for Campus Placement TCS/Wipro/Infosys and all other',
         link: 'https://www.youtube.com/live/bOD5b1GV1Z8?si=DdUgMnBGaJUnLaiJ',
       ),
+    ],
+    [
+      VideoInfo(
+        title: 'Web Development Course',
+        subtitle: 'World\'s most premium Web Development Course',
+        link: 'https://youtu.be/l1EssrLxt7E?si=hPRpgbTjeZina1Gw',
+      ),
+      VideoInfo(
+        title: 'MERN Stack',
+        subtitle: 'MongoDB, Express. js, React. js, and Node. js',
+        link: 'https://youtu.be/fSmp7Cv-c_0?si=qAK4OUcImEdoa3TX',
+      ),
+      VideoInfo(
+        title: 'MERN StackMEAN Stack Full Course',
+        subtitle: 'We will start this complete MEAN Stack training with angular js, which is a front-end Development tool for Creating web applications. We will cover topics like features of angular, architecture, components, and many more. Next, we will cover Node js which is a JavaScrit runtime that allows developers to write server-side code in JavaScript. In node js, we will cover topics like NPM, REST API, and Node.js Authentication With JWT. Moving ahead, we will see Express js. Express is a lightweight framework that allows developers to create server-side web applications quickly and easily. ',
+        link: 'https://youtu.be/48SUuk8e55c?si=k_oaLJKsK2EJsI2C',
+      ),
+    ],
+    [
+      VideoInfo(
+        title: 'Complete Machine Learning',
+        subtitle: 'It\'s acomplete road map to be a expert in python programming.',
+        link: 'https://youtu.be/bPrmA1SEN2k?si=UuxCetitCiwrKw4J',
+      ),
+      VideoInfo(
+        title: 'Machine Learning Full Course with Practical (6 Hours)',
+        subtitle: 'In this Machine Learning tutorial for beginners from WsCube Tech, you will learn basics about machine learning with practical examples for better understanding.Machine Learning (ML) is included in day-to-day life and for staying updated. It will improve the working process of the computer algorithm.',
+        link: 'https://youtu.be/O0Ka_nBRtN0?si=-Qbm_emhm2-8_V1U',
+      ),
+    ],
+    [
+      VideoInfo(
+        title: 'Data Science Course',
+        subtitle: 'Data scientist has become the most popular job in the market today and there is a huge career scope if you know how to do data science. ',
+        link: 'https://youtu.be/JL_grPUnXzY?si=jY5Cgf_J_ywN6HzJ',
+      ),
+      VideoInfo(
+        title: 'DevOps Bootcamp',
+        subtitle: 'Check out the complete DevOps bootcamp consisting of outstanding content to get you from beginner to advance in the field. Get remote work opportunities with 40+ LPA base packages and help with contributing to large scale open source projects.',
+        link: 'https://youtu.be/ZbG0c87wcM8?si=NQ_A1V8qKrz2MrsT',
+      ),
+      VideoInfo(
+        title: 'Cloud Computing Course ',
+        subtitle: 'n this cloud computing full course tutorial, you will learn cloud computing from end to end. This cloud computing tutorial for beginners has got everything from scratch so that even if you are a beginner you find it easy to grasp the concepts explained in this video.',
+        link: 'https://youtu.be/gIWel4gFZaY?si=XcssBX8b8H-_AmgU',
+      ),
+      VideoInfo(
+        title: 'Big Data & Hadoop Full Course',
+        subtitle: 'This Edureka Big Data & Hadoop Full Course video will help you understand and learn Hadoop concepts in detail. This Big Data & Hadoop Tutorial is ideal for both beginners as well as professionals who want to master the Hadoop Ecosystem',
+        link: 'https://youtu.be/1vbXmCrkT3Y?si=1zT1BZAXbMz2tsqY',
+      ),
+      VideoInfo(
+        title: 'Cyber Security Full course - 11 Hours',
+        subtitle: 'This Edureka video on "Cyber Security Full Course" will help you understand and learn the fundamentals of Cyber Security. This Cyber Security Tutorial is ideal for both beginners as well as professionals who want to master the Cyber Security concepts',
+        link: 'https://www.youtube.com/live/lpa8uy4DyMo?si=HNry6SxO3uNgGEMb',
+      ),
+
     ]
 
   ];
@@ -209,7 +270,7 @@ class VideoCard extends StatelessWidget {
     YoutubePlayerController controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(videoInfo.link) ?? '',
       flags: const YoutubePlayerFlags(
-        autoPlay: true,
+        autoPlay: false,
         mute: false,
       ),
     );

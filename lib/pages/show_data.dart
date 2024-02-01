@@ -28,11 +28,11 @@ class _ShowDataState extends State<ShowData>{
     var index = Random().nextInt(loadingIndicators.length);
     return loadingIndicators[index];
   }
-
-  void removeJob(jobID) {
-    print("job with jobID $jobID deleted");
-    FirebaseFirestore.instance.collection("Jobs").doc(jobID).delete();
-  }
+  //
+  // void removeJob(jobID) {
+  //   print("job with jobID $jobID deleted");
+  //   FirebaseFirestore.instance.collection("Jobs").doc(jobID).delete();
+  // }
 
   void myModalSheet(Widget content) {
     showModalBottomSheet(
@@ -45,22 +45,22 @@ class _ShowDataState extends State<ShowData>{
   Widget build(BuildContext context) {
     var jobs = FirebaseFirestore.instance.collection("Jobs");
     return Scaffold(
-      // backgroundColor: Colors.blueGrey,
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          FloatingActionButton(
-            tooltip: "Go Home",
-            onPressed: () => goBack(context),
-            child: const Icon(Icons.home_rounded),
-          ),
-          FloatingActionButton(
-            tooltip: "Add new Job",
-            onPressed: () => myModalSheet(JobModal()),
-            child: const Icon(Icons.add),
-          ),
-        ],
-      ),
+      backgroundColor: Colors.blueGrey,
+      // floatingActionButton: Row(
+      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //   children: [
+      //     FloatingActionButton(
+      //       tooltip: "Go Home",
+      //       onPressed: () => goBack(context),
+      //       child: const Icon(Icons.home_rounded),
+      //     ),
+      //     FloatingActionButton(
+      //       tooltip: "Add new Job",
+      //       onPressed: () => myModalSheet(JobModal()),
+      //       child: const Icon(Icons.add),
+      //     ),
+      //   ],
+      // ),
       appBar: AppBar(
 
         title: const Text("Job Opportunities"),
@@ -86,10 +86,10 @@ class _ShowDataState extends State<ShowData>{
                         leading: CircleAvatar(
                           child: Text("${index + 1}"),
                         ),
-                        trailing: IconButton(onPressed: () {
-                          removeJob(snapshot.data!.docs[index].reference.id);
-                        }, icon: const Icon(Icons.delete), 
-                        ),
+                        // trailing: IconButton(onPressed: () {
+                        //   // removeJob(snapshot.data!.docs[index].reference.id);
+                        // }, icon: const Icon(Icons.delete),
+                        // ),
                         title: Text("${snapshot.data!.docs[index]["title"]}"),
                         subtitle: Text(
                             "${snapshot.data!.docs[index]["company"]}"),
