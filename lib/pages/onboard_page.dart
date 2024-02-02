@@ -38,7 +38,7 @@ class _OnBoardState extends State<OnBoard> {
     print(prefs.getInt('onBoard'));
   }
 
-  Widget skipOnboardButton () {
+  Widget skipOnboardButton() {
     return TextButton(
       onPressed: () {
         _storeOnboardInfo();
@@ -47,7 +47,6 @@ class _OnBoardState extends State<OnBoard> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         decoration: BoxDecoration(
-          // color: Colors.grey[600],
           color: ThemeData().primaryColor,
           borderRadius: BorderRadius.circular(8),
         ),
@@ -58,6 +57,42 @@ class _OnBoardState extends State<OnBoard> {
           ),
         ),
       ),
+    );
+  }
+
+  FloatingActionButton buildPrevButton() {
+    return FloatingActionButton(
+      onPressed: () async {
+        print(currentIndex);
+        if (currentIndex != 0) {
+          _pageController.previousPage(
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.linear,
+          );
+        }
+      },
+      child: const Icon(Icons.arrow_left_rounded),
+      backgroundColor: Colors.grey,
+      mini: true,
+    );
+  }
+
+  FloatingActionButton buildNextButton() {
+    return FloatingActionButton(
+      onPressed: () async {
+        print(currentIndex);
+        if (currentIndex == screens.length - 1) {
+          await _storeOnboardInfo();
+          jumpTo(const LoginPage(), context);
+        }
+        _pageController.nextPage(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.linear,
+        );
+      },
+      child: const Icon(Icons.arrow_right_rounded),
+      backgroundColor: Colors.grey,
+      mini: true,
     );
   }
 
@@ -144,32 +179,8 @@ class _OnBoardState extends State<OnBoard> {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          FloatingActionButton(
-            onPressed: () async {
-              print(currentIndex);
-              if (currentIndex != 0) {
-                _pageController.previousPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.linear,
-                );
-              }
-            },
-            child: const Icon(Icons.arrow_left_rounded)
-          ),
-          FloatingActionButton(
-            onPressed: () async {
-              print(currentIndex);
-              if (currentIndex == screens.length - 1) {
-                await _storeOnboardInfo();
-                jumpTo(const LoginPage(), context);
-              }
-              _pageController.nextPage(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.linear,
-              );
-            },
-            child: const Icon(Icons.arrow_right_rounded)
-          ),
+          buildPrevButton(),
+          buildNextButton(),
         ],
       ),
     );

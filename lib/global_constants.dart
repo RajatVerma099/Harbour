@@ -14,23 +14,23 @@ List<OnboardModel> onBoardingScreens = <OnboardModel>[
       img: 'assets/img/onboard1.jpg',
       text: "Welcome to Harbour",
       desc:
-      "Welcome to Harbour, your harbor for navigating the job market! We're here to guide you on your quest for meaningful employment. Let's set sail on a journey together to discover personalized resources for your career aspirations.",
+      "Your gateway to off-campus job opportunities and more!",
       bg: Colors.white,
       button: const Color(0xFF4756DF),
     ),
     OnboardModel(
       img: 'assets/img/onboard2.jpg',
-      text: "Navigate Resources",
+      text: "Challenges in Today's Job Market",
       desc:
-      "Navigate through a treasure trove of resources designed to elevate your job application journey. From crafting an impactful resume to mastering the art of interviews, Harbour equips you with the essentials to excel in your job search. Let's embark on this voyage and chart your course to success!",
+      "Facing difficulties in job search? Explore new opportunities and overcome challenges with Harbour. ",
       bg: Colors.white,
       button: const Color(0xFF4756DF),
     ),
     OnboardModel(
       img: 'assets/img/onboard3.jpg',
-      text: "Connect and Thrive",
+      text: "How Harbour Helps You",
       desc:
-      "Connect with a community of fellow job seekers and industry experts. Harbour is not just an app; it's a supportive community that believes in your potential. Join hands with us as we navigate the seas of opportunities together. Your next career adventure awaits — let's make it happen with Harbour!",
+      "Harbour provides job links, a resume maker, and study content to make you job-ready. Get started now!",
       bg: Colors.white,
       button: const Color(0xFF4756DF),
     ),
