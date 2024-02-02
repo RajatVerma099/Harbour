@@ -34,7 +34,7 @@ class MyHomePage extends StatelessWidget {
       VideoInfo(
         title: 'Take U Forward by Striver',
         subtitle: 'The playlist aims to teach you Dynamic Programming in depth. The focus of the playlist is to cover all the concepts, and then follow it up with a lot of problems so that the concepts go into your head and stay there.The focus is on logic, so no matter in which language you code, you can easily convert it into code, as we will be writing the pseudocode while teaching.',
-        link: 'https://youtu.be/FfXoiwwnxFw?si=p_wBMSoRFz8_qoj',
+        link: 'https://youtu.be/tyB0ztf0DNY?si=iJ-79OC5fVd2YeFK',
       ),
       VideoInfo(
         title: 'DP by Aditya Verma',
