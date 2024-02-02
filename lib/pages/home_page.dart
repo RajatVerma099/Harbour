@@ -48,95 +48,81 @@ class _MyHomePageState extends State<MyHomePage>
           color: Colors.white,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            _buildBackgroundImage(context),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AnimatedBuilder(
-                    animation: _controller,
-                    builder: (context, child) {
-                      return Stack(
-                        children: [
-                          _buildBackgroundImage(context),
-                          Positioned(
-                            top: -40,
-                            left: 0,
-                            right: 0,
-                            child: ClipPath(
-                              clipper: CurvedBackgroundClipper(),
-                              child: Transform(
-                                alignment: Alignment.center,
-                                transform:
-                                Matrix4.rotationY(_controller.value * 0.8),
-                                child: Image.asset(
-                                  "assets/launch/logo_launch.jpg",
-                                  height:
-                                  MediaQuery.of(context).size.height * 0.6,
-                                ),
+      body: Stack(
+        children: [
+          _buildBackgroundImage(context),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, child) {
+                    return Stack(
+                      children: [
+                        Positioned(
+                          top: -40,
+                          left: 0,
+                          right: 0,
+                          child: ClipPath(
+                            clipper: CurvedBackgroundClipper(),
+                            child: Transform(
+                              alignment: Alignment.center,
+                              transform:
+                              Matrix4.rotationY(_controller.value * 0.8),
+                              child: Image.asset(
+                                "assets/launch/logo_launch.jpg",
+                                height:
+                                MediaQuery.of(context).size.height * 0.6,
                               ),
                             ),
                           ),
-                        ],
-                      );
-                    },
-                  ),
-                ],
-              ),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Positioned(
-        bottom: 0,
-        child: Container(
-          height: containerSize,
-          width: containerSize,
-          padding: const EdgeInsets.only(bottom: 1.0),
-          child: GridView.count(
-            crossAxisCount: 2,
-            mainAxisSpacing: 20.0,
-            crossAxisSpacing: 20.0,
-            children: [
-              _buildButton(
-                const ShowData(),
-                Icons.list,
-                "Show Jobs",
-                Colors.grey[800]!,
-                Colors.grey[400]!,
-                buttonSize,
-              ),
-              _buildButton(
-                const Resume(),
-                Icons.document_scanner_rounded,
-                "Resume Maker",
-                Colors.grey[800]!,
-                Colors.grey[400]!,
-                buttonSize,
-              ),
-              _buildButton(
-                 future_trends(),
-                Icons.document_scanner_rounded,
-                "Future Trends",
-                Colors.grey[800]!,
-                Colors.grey[400]!,
-                buttonSize,
-              ),
-              _buildButton(
-                const GetJobReady(),
-                Icons.document_scanner_rounded,
-                "Get Job Ready",
-                Colors.purple[800]!,
-                Colors.purple[400]!,
-                buttonSize,
-              ),
-            ],
-          ),
+      floatingActionButton: Container(
+        height: containerSize,
+        width: containerSize,
+        padding: const EdgeInsets.only(bottom: 1.0),
+        child: GridView.count(
+          crossAxisCount: 2,
+          mainAxisSpacing: 20.0,
+          crossAxisSpacing: 20.0,
+          children: [
+            _buildButton(
+              const ShowData(),
+              Icons.list,
+              "Show Jobs",
+              buttonSize,
+            ),
+            _buildButton(
+              const Resume(),
+              Icons.document_scanner_rounded,
+              "Resume Maker",
+              buttonSize,
+            ),
+            _buildButton(
+              future_trends(),
+              Icons.document_scanner_rounded,
+              "Future Trends",
+              buttonSize,
+            ),
+            _buildButton(
+              const GetJobReady(),
+              Icons.document_scanner_rounded,
+              "Get Job Ready",
+              buttonSize,
+            ),
+          ],
         ),
       ),
       drawer: const MainDrawer(),
@@ -161,8 +147,6 @@ class _MyHomePageState extends State<MyHomePage>
       Widget page,
       IconData icon,
       String label,
-      Color topColor,
-      Color bottomColor,
       double size,
       ) {
     return ElevatedButton(
@@ -203,7 +187,6 @@ class _MyHomePageState extends State<MyHomePage>
     );
   }
 }
-
 
 class CurvedBackgroundClipper extends CustomClipper<Path> {
   @override
