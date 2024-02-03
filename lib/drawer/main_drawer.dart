@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:harbour/tools/navigation.dart';
 import '../pages/TechnologiesPage.dart';
 import '../pages/dev_page.dart';
@@ -33,50 +34,51 @@ class MainDrawer extends StatelessWidget {
     );
   }
 
-
   Widget buildHeader({
     required String name,
     required String email,
     required VoidCallback onClicked,
     required String imageUrl,
   }) =>
-    InkWell(
-      onTap: onClicked,
-      child: Card(
-        elevation: 15,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(45),
-        ),
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        color: Colors.grey[900],
-        // Dark Background Color
-        child: Container(
-          padding: padding.add(const EdgeInsets.symmetric(vertical: 20)),
-          child: Row(
-            children: [
-              CircleAvatar(
-                  radius: 30, backgroundImage: NetworkImage(imageUrl)),
-              const SizedBox(width: 20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    name,
-                    style: const TextStyle(fontSize: 20, color: Colors.white),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    email,
-                    style: const TextStyle(fontSize: 14, color: Colors.white),
-                  ),
-                ],
-              ),
-              Spacer(),
-            ],
+      InkWell(
+        onTap: onClicked,
+        child: Card(
+          elevation: 15,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(45),
+          ),
+          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          color: Colors.grey[900],
+          // Dark Background Color
+          child: Container(
+            padding: padding.add(const EdgeInsets.symmetric(vertical: 20)),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 30,
+                  backgroundImage: NetworkImage(imageUrl),
+                ),
+                const SizedBox(width: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: const TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      email,
+                      style: const TextStyle(fontSize: 14, color: Colors.white),
+                    ),
+                  ],
+                ),
+                Spacer(),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
 
   List<Widget> meetTheDevs(BuildContext context) {
     const imageUrl1 =
@@ -88,56 +90,54 @@ class MainDrawer extends StatelessWidget {
         padding: EdgeInsets.all(8.0),
         child: Text(
           "MEET THE DEVS",
-          textAlign: TextAlign.center, // Align the text to the center
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w500,
             color: Colors.black,
           ),
         ),
-
       ),
       buildHeader(
         imageUrl: imageUrl1,
         name: 'Mudit Garg',
         email: 'muditgarg48@gmail.com',
-        onClicked: () =>
-          goTo(
-            const DevPage(
-              firstName: 'Mudit',
-              lastName: 'Garg',
-              avatarLink: 'assets/img/mg.jpg',
-              lifeMotto: 'It is what it is !',
-              connectionLinks: {
-                'email': 'gargmu@tcd.ie',
-                'linkedin': 'https://www.linkedin.com/in/muditgarg48/',
-                'github': 'https://github.com/muditgarg48',
-              },
-              sendOffQuote: 'Adios amigo!',
-            ), 
-            context,
+        onClicked: () => goTo(
+          const DevPage(
+            firstName: 'Mudit',
+            lastName: 'Garg',
+            avatarLink: 'assets/img/mg.jpg',
+            lifeMotto: 'It is what it is !',
+            connectionLinks: {
+              'email': 'gargmu@tcd.ie',
+              'linkedin': 'https://www.linkedin.com/in/muditgarg48/',
+              'github': 'https://github.com/muditgarg48',
+            },
+            sendOffQuote: 'Adios amigo!',
           ),
+          context,
+        ),
       ),
       buildHeader(
         imageUrl: imageUrl2,
         name: 'Rajat Verma',
         email: 'lostpoet099@gmail.com',
-        onClicked: () =>
-          goTo(
-            const DevPage(
-              firstName: 'Rajat',
-              lastName: 'Verma',
-              avatarLink: 'assets/img/rv.jpg',
-              lifeMotto: 'Life is a virtual mess we weave',
-              connectionLinks: {
-                'email': 'lostpoet099@gmail.com',
-                'linkedin': 'https://www.linkedin.com/in/rajat-verma-321336224/',
-                'github': 'https://github.com/RajatVerma099',
-              },
-              sendOffQuote: 'That\'s it. Bye!',
-            ), 
-            context,
+        onClicked: () => goTo(
+          const DevPage(
+            firstName: 'Rajat',
+            lastName: 'Verma',
+            avatarLink: 'assets/img/rv.jpg',
+            lifeMotto: 'Life is a virtual mess we weave',
+            connectionLinks: {
+              'email': 'lostpoet099@gmail.com',
+              'linkedin':
+              'https://www.linkedin.com/in/rajat-verma-321336224/',
+              'github': 'https://github.com/RajatVerma099',
+            },
+            sendOffQuote: 'That\'s it. Bye!',
           ),
+          context,
+        ),
       ),
     ];
   }
@@ -145,24 +145,23 @@ class MainDrawer extends StatelessWidget {
   Widget buildSupportButton(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(horizontal: 10), // Adjusted margin
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       child: ElevatedButton(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => BuyUsACoffee()));
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => BuyUsACoffee()));
         },
         style: ElevatedButton.styleFrom(
-          primary: Colors
-              .grey[900], // Same background color as the cards for Rajat and Mudit
+          primary: Colors.grey[900],
         ),
         child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 10), // Adjusted padding
+          padding: EdgeInsets.symmetric(vertical: 10),
           child: Center(
             child: Text(
               'Support Us :)',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white, // Set the text color to white
+                color: Colors.white,
               ),
             ),
           ),
@@ -171,27 +170,63 @@ class MainDrawer extends StatelessWidget {
     );
   }
 
-  Widget Tech_Used(BuildContext context) {
+  Widget techUsedButton(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(horizontal: 10), // Adjusted margin
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       child: ElevatedButton(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const TechnologiesPage()));
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const TechnologiesPage()));
         },
         style: ElevatedButton.styleFrom(
-          primary: Colors
-              .grey[900], // Same background color as the cards for Rajat and Mudit
+          primary: Colors.grey[900],
         ),
         child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 10), // Adjusted padding
+          padding: EdgeInsets.symmetric(vertical: 10),
           child: Center(
             child: Text(
               'Tech Used ',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white, // Set the text color to white
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget checkForUpdatesButton(BuildContext context) {
+    const updatesUrl = 'https://rajatverma099.github.io/harbour_website/';
+
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      child: ElevatedButton(
+        onPressed: () async {
+          if (await canLaunch(updatesUrl)) {
+            await launch(updatesUrl);
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Could not launch the updates URL.'),
+              ),
+            );
+          }
+        },
+        style: ElevatedButton.styleFrom(
+          primary: Colors.grey[900],
+        ),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          child: Center(
+            child: Text(
+              'Check for Updates',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
               ),
             ),
           ),
@@ -202,29 +237,31 @@ class MainDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return NavigationDrawer(
-      // backgroundColor: ThemeData().primaryColor,
-        backgroundColor: Colors.white,
-        children: [
+      backgroundColor: Colors.white,
+      children: [
         intro(),
         const Divider(
           indent: 30,
           endIndent: 30,
         ),
         ...meetTheDevs(context),
-
         const Divider(
           indent: 30,
           endIndent: 30,
         ),
         buildSupportButton(context),
-          const Divider(
-            indent: 30,
-            endIndent: 30,
-          ),
-          Tech_Used(context),
-        ]
+        const Divider(
+          indent: 30,
+          endIndent: 30,
+        ),
+        techUsedButton(context),
+        const Divider(
+          indent: 30,
+          endIndent: 30,
+        ),
+        checkForUpdatesButton(context),
+      ],
     );
   }
 }
