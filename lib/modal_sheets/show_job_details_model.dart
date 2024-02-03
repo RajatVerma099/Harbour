@@ -20,7 +20,7 @@ class JobDetailsModal extends StatelessWidget {
     applyLink = job["apply-link"];
     experience = job["experience"];
     location = job["location"];
-    moreInfoLink = job["more-info-link"];
+    moreInfoLink = job["moreInfoLink"];
   }
   
   Future<void> _onOpen(LinkableElement link) async {

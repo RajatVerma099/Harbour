@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../modal_sheets/add_job_modal.dart';
+// import '../modal_sheets/add_job_modal.dart';
 import '../modal_sheets/show_job_details_model.dart';
 import '../tools/navigation.dart';
 
@@ -28,7 +28,7 @@ class _ShowDataState extends State<ShowData>{
     var index = Random().nextInt(loadingIndicators.length);
     return loadingIndicators[index];
   }
-  //
+
   // void removeJob(jobID) {
   //   print("job with jobID $jobID deleted");
   //   FirebaseFirestore.instance.collection("Jobs").doc(jobID).delete();
@@ -46,21 +46,21 @@ class _ShowDataState extends State<ShowData>{
     var jobs = FirebaseFirestore.instance.collection("Jobs");
     return Scaffold(
       backgroundColor: Colors.blueGrey,
-      // floatingActionButton: Row(
-      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //   children: [
-      //     FloatingActionButton(
-      //       // tooltip: "Go Home",
-      //       onPressed: () => goBack(context),
-      //       child: const Icon(Icons.home_rounded),
-      //     ),
-      //     FloatingActionButton(
-      //       tooltip: "Add new Job",
-      //       onPressed: () => myModalSheet(JobModal()),
-      //       child: const Icon(Icons.add),
-      //     ),
-      //   ],
-      // ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          // FloatingActionButton(
+          //   // tooltip: "Go Home",
+          //   onPressed: () => goBack(context),
+          //   child: const Icon(Icons.home_rounded),
+          // ),
+          // FloatingActionButton(
+          //   tooltip: "Add new Job",
+          //   onPressed: () => myModalSheet(JobModal()),
+          //   child: const Icon(Icons.add),
+          // ),
+        ],
+      ),
       appBar: AppBar(
 
         title: const Text("Job Opportunities"),
@@ -87,7 +87,7 @@ class _ShowDataState extends State<ShowData>{
                           child: Text("${index + 1}"),
                         ),
                         // trailing: IconButton(onPressed: () {
-                        //   // removeJob(snapshot.data!.docs[index].reference.id);
+                        //   removeJob(snapshot.data!.docs[index].reference.id);
                         // }, icon: const Icon(Icons.delete),
                         // ),
                         title: Text("${snapshot.data!.docs[index]["title"]}"),

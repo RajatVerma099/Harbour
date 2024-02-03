@@ -15,7 +15,7 @@ class _JobModalState extends State<JobModal> {
     "apply-link": "",
     "experience": "",
     "location": "",
-    "more-info-link": "",
+    "moreInfoLink": "",
   };
 
   void addDataToFirebase() {
