@@ -107,14 +107,14 @@ class MyHomePage extends StatelessWidget {
     ],
     [
       VideoInfo(
-        title: 'Aptitude Preparation for Placements ',
-        subtitle: 'Aptitude Preparation is important for Campus Placements and how this playlist will help you in placement in the Hindi language. ',
-        link: 'https://youtu.be/hlyal4sR0m8?si=0y8ievr3u2cqNpBe',
+        title: 'Coding Ninjas - Aptitude For Placements  ',
+        subtitle: 'Have trouble getting ready for your placement? Would you like a preparation guide for aptitude tests? Now you can advance your learning of aptitude preparation with our Lesson 1 of the Aptitude placement series.',
+        link: 'https://youtu.be/YUq-UgZ0dis?si=Y6rJgnEeCBzxvvtZ',
       ),
       VideoInfo(
-        title: 'Aptitude for Campus Placement TCS/Wipro/Infosys...',
+        title: 'Aptitude Preparation for Placements',
         subtitle: 'A complete playlist - Aptitude for Campus Placement TCS/Wipro/Infosys and all other',
-        link: 'https://www.youtube.com/live/bOD5b1GV1Z8?si=DdUgMnBGaJUnLaiJ',
+        link: 'https://youtu.be/hlyal4sR0m8?si=egBsr0ui3QZ54vaB',
       ),
     ],
     [
@@ -168,10 +168,11 @@ class MyHomePage extends StatelessWidget {
         link: 'https://youtu.be/1vbXmCrkT3Y?si=1zT1BZAXbMz2tsqY',
       ),
       VideoInfo(
-        title: 'Cyber Security Full course - 11 Hours',
-        subtitle: 'This Edureka video on "Cyber Security Full Course" will help you understand and learn the fundamentals of Cyber Security. This Cyber Security Tutorial is ideal for both beginners as well as professionals who want to master the Cyber Security concepts',
-        link: 'https://www.youtube.com/live/lpa8uy4DyMo?si=s61-bZEBQ17GX1pH',
+        title: ' Learn Cybersecurity In 11 Hours',
+        subtitle: 'This Simplilearn video on "Cyber Security Full Course" will help you understand and learn the fundamentals of Cyber Security. This Cyber Security Tutorial is ideal for both beginners as well as professionals who want to master the Cyber Security concepts',
+        link: 'https://youtu.be/g-h0r85Dp2Y?si=Pwz4CnNSHZHX6JSP',
       ),
+
 
     ]
 
