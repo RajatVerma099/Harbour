@@ -20,7 +20,7 @@ class MainDrawer extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Container(
         padding: padding.add(const EdgeInsets.symmetric(vertical: 20)),
-        child: Center(
+        child: const Center(
           child: Text(
             'Hey Harbour Explorers,\n\n🚀 Thank you for choosing Harbour! 🚀\n\nSet sail with us on this journey that matters. 😊 Enjoyed it? Share the love! Help others navigate their career seas with Harbour.\n\nCheers,\nThe Harbour Crew',
             textAlign: TextAlign.center,
@@ -235,6 +235,43 @@ class MainDrawer extends StatelessWidget {
     );
   }
 
+  Widget feedbackButton(BuildContext context) {
+    const feedbackUrl = 'https://forms.gle/crw2cSPjd9sp8dz7A';
+
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      child: ElevatedButton(
+        onPressed: () async {
+          if (await canLaunch(feedbackUrl)) {
+            await launch(feedbackUrl);
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Could not launch the feedback URL.'),
+              ),
+            );
+          }
+        },
+        style: ElevatedButton.styleFrom(
+          primary: Colors.grey[900],
+        ),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          child: Center(
+            child: Text(
+              'Give Feedback',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return NavigationDrawer(
@@ -261,6 +298,11 @@ class MainDrawer extends StatelessWidget {
           endIndent: 30,
         ),
         checkForUpdatesButton(context),
+        const Divider(
+          indent: 30,
+          endIndent: 30,
+        ),
+        feedbackButton(context),
       ],
     );
   }

@@ -1,7 +1,10 @@
-import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+void main() {
+  runApp(GetJobReady());
+}
 
 class GetJobReady extends StatelessWidget {
   const GetJobReady({Key? key});
@@ -9,11 +12,9 @@ class GetJobReady extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       debugShowCheckedModeBanner: false,
-      title: 'Get Job Ready',
-
-      home: MyHomePage(title: '',),
+      title: 'Let\'s Level Up :)',
+      home: MyHomePage(),
     );
   }
 }
@@ -82,11 +83,11 @@ class MyHomePage extends StatelessWidget {
         subtitle: 'A complete playlist having course notes in the description itself :)',
         link: 'https://youtu.be/bm0OyhwFDuY?si=62jRhv-7BZr-SU_j',
       ),
-  VideoInfo(
-  title: 'Python by Telusko ',
-  subtitle: 'Python is one of the best programming language and easy to learn. Python is used in Machine Learning, Data Science, Big Data, Web Development, Scripting.',
-  link: 'https://youtu.be/QXeEoD0pB3E?si=Y0WcpX6BOw-J6Pd1',
-  ),
+      VideoInfo(
+        title: 'Python by Telusko ',
+        subtitle: 'Python is one of the best programming language and easy to learn. Python is used in Machine Learning, Data Science, Big Data, Web Development, Scripting.',
+        link: 'https://youtu.be/QXeEoD0pB3E?si=Y0WcpX6BOw-J6Pd1',
+      ),
 
       VideoInfo(
         title: 'JS By Thapa Sir ',
@@ -105,11 +106,11 @@ class MyHomePage extends StatelessWidget {
       ),
     ],
     [
-    VideoInfo(
-      title: 'Aptitude Preparation for Placements ',
-      subtitle: 'Aptitude Preparation is important for Campus Placements and how this playlist will help you in placement in the Hindi language. ',
-      link: 'https://youtu.be/hlyal4sR0m8?si=0y8ievr3u2cqNpBe',
-    ),
+      VideoInfo(
+        title: 'Aptitude Preparation for Placements ',
+        subtitle: 'Aptitude Preparation is important for Campus Placements and how this playlist will help you in placement in the Hindi language. ',
+        link: 'https://youtu.be/hlyal4sR0m8?si=0y8ievr3u2cqNpBe',
+      ),
       VideoInfo(
         title: 'Aptitude for Campus Placement TCS/Wipro/Infosys...',
         subtitle: 'A complete playlist - Aptitude for Campus Placement TCS/Wipro/Infosys and all other',
@@ -176,41 +177,35 @@ class MyHomePage extends StatelessWidget {
 
   ];
 
-  MyHomePage({Key? key, required String title});
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // appBar: AppBar(
-      debugShowCheckedModeBanner: false,
-
-      // ),
-      home: Scaffold(
-        appBar: AppBar(
-        title: const Text('Get Job Ready'),
-        ),
-      body:Container(
-      color: Colors.grey[500],
-        child:
-        CarouselSlider.builder(
-        itemCount: mainTitles.length,
-        options: CarouselOptions(
-          height: MediaQuery.of(context).size.height,
-          aspectRatio: 16 / 9,
-          viewportFraction: 0.5,
-          enlargeCenterPage: true,
-          enableInfiniteScroll: false,
-          scrollDirection: Axis.vertical,
-        ),
-        itemBuilder: (BuildContext context, int index, int realIndex) {
-          return VerticalCarousel(
-            mainTitle: mainTitles[index],
-            videoData: videoData[index],
-          );
-        },
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Get Job Ready', style: TextStyle(fontSize: 20)),
+        centerTitle: true,
       ),
-    ),
-    ),
+      body: Container(
+        color: Colors.grey[500],
+        child: CarouselSlider.builder(
+          itemCount: mainTitles.length,
+          options: CarouselOptions(
+            height: MediaQuery.of(context).size.height,
+            aspectRatio: 16 / 9,
+            viewportFraction: 0.5,
+            enlargeCenterPage: true,
+            enableInfiniteScroll: false,
+            scrollDirection: Axis.vertical,
+          ),
+          itemBuilder: (BuildContext context, int index, int realIndex) {
+            return VerticalCarousel(
+              mainTitle: mainTitles[index],
+              videoData: videoData[index],
+            );
+          },
+        ),
+      ),
     );
   }
 }
@@ -239,7 +234,7 @@ class VerticalCarousel extends StatelessWidget {
         CarouselSlider.builder(
           itemCount: videoData.length,
           options: CarouselOptions(
-            height: 200, // Adjust the height of the inner carousel as needed
+            height: 200,
             aspectRatio: 16 / 9,
             viewportFraction: 0.6,
             enlargeCenterPage: true,
@@ -249,7 +244,6 @@ class VerticalCarousel extends StatelessWidget {
           itemBuilder: (BuildContext context, int index, int realIndex) {
             return VideoCard(
               videoInfo: videoData[index],
-
             );
           },
         ),
@@ -275,46 +269,42 @@ class VideoCard extends StatelessWidget {
       ),
     );
     return Container(
-        // height: 900,
-        // color: Colors.grey,
-        child:  SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
-        children: [
-          YoutubePlayer(
-            controller: controller,
-            showVideoProgressIndicator: true,
-            progressIndicatorColor: Colors.blueAccent,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  videoInfo.title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0,
-                  ),
-                ),
-                SizedBox(height: 4.0),
-                Text(
-                  videoInfo.subtitle,
-                  style: const TextStyle(fontSize: 14.0),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                ),/////////////////////////////////////////////////////////////////////yr yhi pr h bas visible nhi h due to ht factor
-
-              ],
+          children: [
+            YoutubePlayer(
+              controller: controller,
+              showVideoProgressIndicator: true,
+              progressIndicatorColor: Colors.blueAccent,
             ),
-          ),
-        ],
-      ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    videoInfo.title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  SizedBox(height: 4.0),
+                  Text(
+                    videoInfo.subtitle,
+                    style: const TextStyle(fontSize: 14.0),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
+      ),
     );
   }
 }
-
 
 class VideoInfo {
   final String title;
