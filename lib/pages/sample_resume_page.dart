@@ -72,25 +72,20 @@ class _ResumeState extends State<Resume> {
               ],
             ),
           ),
-          Positioned(
-            bottom: 32.0, // Adjusted the bottom padding
-            left: 0,
-            right: 0,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 36.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  imageUrls.length,
-                  (index) => Container(
-                    width: 8.0,
-                    height: 8.0,
-                    margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey
-                          .withOpacity(index == _currentIndex ? 1.0 : 0.4),
-                    ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 36.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                imageUrls.length,
+                    (index) => Container(
+                  width: 8.0,
+                  height: 8.0,
+                  margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.grey
+                        .withOpacity(index == _currentIndex ? 1.0 : 0.4),
                   ),
                 ),
               ),

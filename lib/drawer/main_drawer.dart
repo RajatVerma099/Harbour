@@ -210,7 +210,7 @@ class MainDrawer extends StatelessWidget {
             await launch(updatesUrl);
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
+              const SnackBar(
                 content: Text('Could not launch the updates URL.'),
               ),
             );
