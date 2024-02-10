@@ -121,7 +121,7 @@ class MainDrawer extends StatelessWidget {
       buildHeader(
         imageUrl: imageUrl2,
         name: 'Rajat Verma',
-        email: 'lostpoet099@gmail.com',
+        email: 'rv5393982@gmail.com',
         onClicked: () => goTo(
           const DevPage(
             firstName: 'Rajat',
@@ -134,7 +134,7 @@ class MainDrawer extends StatelessWidget {
               'https://www.linkedin.com/in/rajat-verma-321336224/',
               'github': 'https://github.com/RajatVerma099',
             },
-            sendOffQuote: 'That\'s it. Bye!',
+            sendOffQuote: 'Feel free to connect :)',
           ),
           context,
         ),
