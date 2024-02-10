@@ -2,18 +2,31 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-// import '../modal_sheets/add_job_modal.dart';
 import '../modal_sheets/show_job_details_model.dart';
-import '../tools/navigation.dart';
 
 class ShowData extends StatefulWidget {
-  const ShowData({super.key});
+  const ShowData({Key? key}) : super(key: key);
 
   @override
   State<ShowData> createState() => _ShowDataState();
 }
 
-class _ShowDataState extends State<ShowData>{
+class _ShowDataState extends State<ShowData> {
+  late TextEditingController _locationController;
+  late Stream<QuerySnapshot> _jobsStream;
+
+  @override
+  void initState() {
+    super.initState();
+    _locationController = TextEditingController();
+    _jobsStream = FirebaseFirestore.instance.collection("Jobs").snapshots();
+  }
+
+  @override
+  void dispose() {
+    _locationController.dispose();
+    super.dispose();
+  }
 
   Widget loadingIndicator() {
     var loadingIndicators = const [
@@ -23,16 +36,10 @@ class _ShowDataState extends State<ShowData>{
       LinearProgressIndicator(
         borderRadius: BorderRadius.all(Radius.circular(3)),
       ),
-
     ];
     var index = Random().nextInt(loadingIndicators.length);
     return loadingIndicators[index];
   }
-
-  // void removeJob(jobID) {
-  //   print("job with jobID $jobID deleted");
-  //   FirebaseFirestore.instance.collection("Jobs").doc(jobID).delete();
-  // }
 
   void myModalSheet(Widget content) {
     showModalBottomSheet(
@@ -41,76 +48,223 @@ class _ShowDataState extends State<ShowData>{
     );
   }
 
+  void filterJobs(String location) {
+    print('Filtering jobs for location: $location');
+    setState(() {
+      _jobsStream = FirebaseFirestore.instance
+          .collection("Jobs") // Perform a collection group query
+          .orderBy("location")
+          .startAt([location])
+          .snapshots();
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    var jobs = FirebaseFirestore.instance.collection("Jobs");
     return Scaffold(
       backgroundColor: Colors.blueGrey,
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          // FloatingActionButton(
-          //   // tooltip: "Go Home",
-          //   onPressed: () => goBack(context),
-          //   child: const Icon(Icons.home_rounded),
-          // ),
-          // FloatingActionButton(
-          //   tooltip: "Add new Job",
-          //   onPressed: () => myModalSheet(JobModal()),
-          //   child: const Icon(Icons.add),
-          // ),
-        ],
-      ),
       appBar: AppBar(
-
         title: const Text("Job Opportunities"),
         centerTitle: true,
       ),
-      body: StreamBuilder(
-          stream: jobs.snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: loadingIndicator(),);
-            }
-            else if (snapshot.connectionState == ConnectionState.active) {
-              if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
-                return ListView.builder(
-                  itemBuilder: (context, index) {
-                    return Card(
-                      elevation: 5,
-                      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16,),
-                      child: ListTile(
-                        onTap: () => myModalSheet(
-                          JobDetailsModal(snapshot.data!.docs[index])
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _locationController,
+                    decoration: const InputDecoration(
+                      labelText: 'Filter by Location',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    String location = _locationController.text;
+                    if (location.isNotEmpty) {
+                      filterJobs(location);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Please enter a location to filter.'),
+                      ));
+                    }
+                  },
+                  child: Text('Filter'),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: StreamBuilder(
+              stream: _jobsStream,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: loadingIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text('Error: ${snapshot.error}'),
+                  );
+                } else if (snapshot.hasData &&
+                    snapshot.data!.docs.isNotEmpty) {
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
+                      return Card(
+                        elevation: 5,
+                        margin: const EdgeInsets.symmetric(
+                          vertical: 8,
+                          horizontal: 16,
                         ),
-                        leading: CircleAvatar(
-                          child: Text("${index + 1}"),
+                        child: ListTile(
+                          onTap: () => myModalSheet(
+                            JobDetailsModal(snapshot.data!.docs[index]),
+                          ),
+                          leading: CircleAvatar(
+                            child: Text("${index + 1}"),
+                          ),
+                          title: Text("${snapshot.data!.docs[index]["title"]}"),
+                          subtitle:
+                          Text("${snapshot.data!.docs[index]["company"]}"),
                         ),
-                        // trailing: IconButton(onPressed: () {
-                        //   removeJob(snapshot.data!.docs[index].reference.id);
-                        // }, icon: const Icon(Icons.delete),
-                        // ),
-                        title: Text("${snapshot.data!.docs[index]["title"]}"),
-                        subtitle: Text(
-                            "${snapshot.data!.docs[index]["company"]}"),
-                      ),
-                    );
-                },
-                itemCount: snapshot.data!.docs.length,
-                );
-              }
-              else {
-                return const Center(
-                  child: Text("No Jobs"),
-                );
-              }
-            }
-            else {
-              return const Center(
-                  child: Text("No Connection"),
-                );
-            }
-          }
+                      );
+                    },
+                    itemCount: snapshot.data!.docs.length,
+                  );
+                } else {
+                  return const Center(
+                    child: Text("No Jobs"),
+                  );
+                }
+              },
+            ),
+          ),
+        ],
       ),
     );
-  }}
+  }
+}
+
+
+
+
+// import 'dart:math';
+//
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:flutter/material.dart';
+// // import '../modal_sheets/add_job_modal.dart';
+// import '../modal_sheets/show_job_details_model.dart';
+// import '../tools/navigation.dart';
+//
+// class ShowData extends StatefulWidget {
+//   const ShowData({super.key});
+//
+//   @override
+//   State<ShowData> createState() => _ShowDataState();
+// }
+//
+// class _ShowDataState extends State<ShowData>{
+//
+//   Widget loadingIndicator() {
+//     var loadingIndicators = const [
+//       CircularProgressIndicator(
+//         strokeWidth: 3,
+//       ),
+//       LinearProgressIndicator(
+//         borderRadius: BorderRadius.all(Radius.circular(3)),
+//       ),
+//
+//     ];
+//     var index = Random().nextInt(loadingIndicators.length);
+//     return loadingIndicators[index];
+//   }
+//
+//   // void removeJob(jobID) {
+//   //   print("job with jobID $jobID deleted");
+//   //   FirebaseFirestore.instance.collection("Jobs").doc(jobID).delete();
+//   // }
+//
+//   void myModalSheet(Widget content) {
+//     showModalBottomSheet(
+//       context: context,
+//       builder: (context) => content,
+//     );
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     var jobs = FirebaseFirestore.instance.collection("Jobs");
+//     return Scaffold(
+//       backgroundColor: Colors.blueGrey,
+//       floatingActionButton: const Row(
+//         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//         children: [
+//           // FloatingActionButton(
+//           //   // tooltip: "Go Home",
+//           //   onPressed: () => goBack(context),
+//           //   child: const Icon(Icons.home_rounded),
+//           // ),
+//           // FloatingActionButton(
+//           //   tooltip: "Add new Job",
+//           //   onPressed: () => myModalSheet(JobModal()),
+//           //   child: const Icon(Icons.add),
+//           // ),
+//         ],
+//       ),
+//       appBar: AppBar(
+//
+//         title: const Text("Job Opportunities"),
+//         centerTitle: true,
+//       ),
+//       body: StreamBuilder(
+//           stream: jobs.snapshots(),
+//           builder: (context, snapshot) {
+//             if (snapshot.connectionState == ConnectionState.waiting) {
+//               return Center(child: loadingIndicator(),);
+//             }
+//             else if (snapshot.connectionState == ConnectionState.active) {
+//               if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
+//                 return ListView.builder(
+//                   itemBuilder: (context, index) {
+//                     return Card(
+//                       elevation: 5,
+//                       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16,),
+//                       child: ListTile(
+//                         onTap: () => myModalSheet(
+//                           JobDetailsModal(snapshot.data!.docs[index])
+//                         ),
+//                         leading: CircleAvatar(
+//                           child: Text("${index + 1}"),
+//                         ),
+//                         // trailing: IconButton(onPressed: () {
+//                         //   removeJob(snapshot.data!.docs[index].reference.id);
+//                         // }, icon: const Icon(Icons.delete),
+//                         // ),
+//                         title: Text("${snapshot.data!.docs[index]["title"]}"),
+//                         subtitle: Text(
+//                             "${snapshot.data!.docs[index]["company"]}"),
+//                       ),
+//                     );
+//                 },
+//                 itemCount: snapshot.data!.docs.length,
+//                 );
+//               }
+//               else {
+//                 return const Center(
+//                   child: Text("No Jobs"),
+//                 );
+//               }
+//             }
+//             else {
+//               return const Center(
+//                   child: Text("No Connection"),
+//                 );
+//             }
+//           }
+//       ),
+//     );
+//   }}
