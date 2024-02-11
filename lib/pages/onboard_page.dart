@@ -42,7 +42,8 @@ class _OnBoardState extends State<OnBoard> {
     return TextButton(
       onPressed: () {
         _storeOnboardInfo();
-        jumpTo(const MyHomePage(title: "Welcome Seeker !!"), context);
+        // jumpTo(const MyHomePage(title: "Welcome Seeker !!"), context);
+        jumpTo(const LoginPage(), context);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
