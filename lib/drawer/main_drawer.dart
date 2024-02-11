@@ -73,7 +73,7 @@ class MainDrawer extends StatelessWidget {
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
               ],
             ),
           ),
@@ -149,7 +149,7 @@ class MainDrawer extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => BuyUsACoffee()));
+              MaterialPageRoute(builder: (context) => const BuyUsACoffee()));
         },
         style: ElevatedButton.styleFrom(
           primary: Colors.grey[900],

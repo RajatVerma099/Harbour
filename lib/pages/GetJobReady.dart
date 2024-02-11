@@ -24,10 +24,12 @@ class MyHomePage extends StatelessWidget {
     'Dynamic Programming',
     'Query Languages',
     'Programming Languages',
+    'Computer Networking',
+    'Operating System',
     'Aptitude with Reasoning',
     'Be a Dev',
     'AI / ML',
-    'Future Techs'
+    'Future Techs',
   ];
 
   final List<List<VideoInfo>> videoData = [
@@ -103,6 +105,20 @@ class MyHomePage extends StatelessWidget {
         title: 'C++ Full Course ',
         subtitle: 'Complete C++ Placement Course with DSA  ',
         link: 'https://youtu.be/z9bZufPHFLU?si=U69VyXZ7dCauJOC1',
+      ),
+    ],
+    [
+      VideoInfo(
+        title: 'Neso Academy\'s Computer Networks',
+        subtitle: 'It\'s one of the finest and free playlist to grasp deep concepts of CNs.   ',
+        link: 'https://youtu.be/VwN91x5i25g?si=7nL8hoDrkBp59Czi',
+      ),
+    ],
+    [
+      VideoInfo(
+        title: 'Computer Networks',
+        subtitle: 'Watch Jenny Ma\'am\'s lectures to get deep insights in OS and her yt page has much more to explore',
+        link: 'https://youtu.be/RozoeWzT7IM?si=JQTlILkBc-Xjn3ME',
       ),
     ],
     [

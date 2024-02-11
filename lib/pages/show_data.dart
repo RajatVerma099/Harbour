@@ -15,6 +15,8 @@ class _ShowDataState extends State<ShowData> {
   late TextEditingController _locationController;
   late Stream<QuerySnapshot> _jobsStream;
 
+  bool _isFilterExpanded = false; // Track if filter is expanded
+
   @override
   void initState() {
     super.initState();
@@ -50,10 +52,7 @@ class _ShowDataState extends State<ShowData> {
 
   void filterJobs(String location) {
     print('Filtering jobs for location: $location');
-    location = location.isNotEmpty
-        ? location[0].toUpperCase() + location.substring(1)
-        : location;
-    location=location.trim();
+    location = location.trim();
     setState(() {
       _jobsStream = FirebaseFirestore.instance
           .collection("Jobs")
@@ -70,44 +69,62 @@ class _ShowDataState extends State<ShowData> {
       appBar: AppBar(
         title: const Text("Job Opportunities"),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                _isFilterExpanded = !_isFilterExpanded;
+              });
+            },
+            icon: const Icon(Icons.filter_list),
+          ),
+        ],
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: TextField(
-                      controller: _locationController,
-                      decoration: const InputDecoration(
-                        hintText: 'Sort by location...',
-                        border: InputBorder.none,
+          AnimatedContainer(
+            duration: Duration(milliseconds: 300),
+            height: _isFilterExpanded ? 100 : 0,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TextField(
+                        controller: _locationController,
+                        decoration: const InputDecoration(
+                          hintText: 'Sort by location...',
+                          border: InputBorder.none,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    String location = _locationController.text;
-                    if (location.isNotEmpty) {
-                      filterJobs(location);
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Please enter a location to filter.'),
-                      ));
-                    }
-                  },
-                  child: Text('Search'),
-                ),
-              ],
+                  const SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      String location = _locationController.text;
+                      location = location.isNotEmpty
+                          ? location[0].toUpperCase() + location.substring(1)
+                          : location;
+                      location=location.trim();
+                      if (location.isNotEmpty) {
+                        filterJobs(location);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Please enter a location to filter.'),
+                        ));
+                      }
+                    },
+                    child: Text('Search'),
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
