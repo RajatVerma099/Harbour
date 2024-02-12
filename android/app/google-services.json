@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1091454301447:android:49f7957e577e11ada2c1a2",
         "android_client_info": {
-          "package_name": "com.example.harbour"
+          "package_name": "com.ExSol.Harbour"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "1091454301447-e3bukc420b8scjqr17fd6rdm1hgnd216.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.harbour",
+            "package_name": "com.ExSol.Harbour",
             "certificate_hash": "bc6c72ee54b54c3255fdf77cbbd9bd0b12079f4b"
           }
         },
@@ -25,7 +25,7 @@
           "client_id": "1091454301447-umuqrvo6nonkds8026i5f35si03mr7pt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.harbour",
+            "package_name": "com.ExSol.Harbour",
             "certificate_hash": "59136cc7de096fd5d318779159f443cd026d4d4d"
           }
         },

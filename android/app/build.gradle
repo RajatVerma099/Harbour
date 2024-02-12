@@ -35,7 +35,7 @@ android {
     compileSdkVersion 33 // Update to the latest version
 
     defaultConfig {
-        applicationId "com.example.harbour"
+        applicationId "com.ExSol.Harbour"
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
@@ -71,7 +71,7 @@ android {
         pickFirst 'lib/x86/libflutter.so'
         pickFirst 'lib/x86_64/libflutter.so'
     }
-    namespace 'com.example.harbour'
+    namespace 'com.ExSol.Harbour'
 }
 
 dependencies {
