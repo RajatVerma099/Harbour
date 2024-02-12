@@ -116,7 +116,7 @@ class MyHomePage extends StatelessWidget {
     ],
     [
       VideoInfo(
-        title: 'Computer Networks',
+        title: 'Operating System',
         subtitle: 'Watch Jenny Ma\'am\'s lectures to get deep insights in OS and her yt page has much more to explore',
         link: 'https://youtu.be/RozoeWzT7IM?si=JQTlILkBc-Xjn3ME',
       ),

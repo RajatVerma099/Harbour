@@ -84,18 +84,8 @@ flutter:
     - assets/img/
     - assets/icons/
     - assets/launch/
-#    - assets/icons/canva.png
-#    - assets/icons/cvmaker.png
-#    - assets/icons/zety.png
-#    - assets/icons/visualcv.png
-#    - assets/icons/resumemaker.png
-#    - assets/icons/resumegenius.png
-#    - assets/icons/resumedotcom.png
-#    - assets/icons/resumebuilder.png
-#    - assets/icons/novoresume.png
-#    - assets/icons/kickresume.png
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
+    - assets/coding_platform/
+
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
