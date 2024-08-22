@@ -1,18 +1,18 @@
 import 'dart:ui';
+import 'package:carousel_slider/carousel_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
-class coding_platforms extends StatefulWidget {
-  const coding_platforms({Key? key}) : super(key: key);
+class CodingPlatforms extends StatefulWidget {
+  const CodingPlatforms({Key? key}) : super(key: key);
 
   @override
-  _TechnologiesPageState createState() => _TechnologiesPageState();
+  _CodingPlatformsState createState() => _CodingPlatformsState();
 }
 
-class _TechnologiesPageState extends State<coding_platforms> {
+class _CodingPlatformsState extends State<CodingPlatforms> {
   int _currentIndex = 0;
 
   @override
@@ -64,7 +64,7 @@ class TechnologiesList extends StatefulWidget {
 }
 
 class _TechnologiesListState extends State<TechnologiesList> {
-  final CarouselController _carouselController = CarouselController();
+  final CarouselSliderController _carouselController = CarouselSliderController();
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +124,7 @@ class TechnologyCard extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width * 0.7,
               height: MediaQuery.of(context).size.height * 0.1,
-              child: Image.network(
+              child: Image.asset(
                 technology.imageUrl,
                 fit: BoxFit.contain,
               ),
@@ -190,24 +190,24 @@ final List<Technology> technologies = [
     imageUrl: 'assets/coding_platform/gfg.jpg',
     websiteUrl: 'https://www.geeksforgeeks.org/',
   ),
-Technology(
-technologyName: 'CodeChef',
-imageUrl: 'assets/coding_platform/codechef.jpg',
-websiteUrl: 'https://www.codechef.com/',
-),
-Technology(
-technologyName: 'HackerEarth',
-imageUrl: 'assets/coding_platform/hackerearth.jpg',
-websiteUrl: 'https://www.hackerearth.com/',
-),
-Technology(
-technologyName: 'HackerRank',
-imageUrl: 'assets/coding_platform/hackerrank.jpg',
-websiteUrl: 'https://www.hackerrank.com/',
-),
+  Technology(
+    technologyName: 'CodeChef',
+    imageUrl: 'assets/coding_platform/codechef.jpg',
+    websiteUrl: 'https://www.codechef.com/',
+  ),
+  Technology(
+    technologyName: 'HackerEarth',
+    imageUrl: 'assets/coding_platform/hackerearth.jpg',
+    websiteUrl: 'https://www.hackerearth.com/',
+  ),
+  Technology(
+    technologyName: 'HackerRank',
+    imageUrl: 'assets/coding_platform/hackerrank.jpg',
+    websiteUrl: 'https://www.hackerrank.com/',
+  ),
   Technology(
     technologyName: 'LeetCode',
     imageUrl: 'assets/coding_platform/leetcode.jpg',
-    websiteUrl: 'https://www.hackerrank.com/',
-  )
+    websiteUrl: 'https://leetcode.com/',
+  ),
 ];

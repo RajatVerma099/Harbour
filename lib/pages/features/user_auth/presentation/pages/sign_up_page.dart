@@ -148,7 +148,7 @@ setState(() {
       showToast(message: "User is successfully created");
       Navigator.pushNamed(context, "/home");
     } else {
-      showToast(message: "Some error happend");
+      showToast(message: "Some error happened");
     }
   }
 }

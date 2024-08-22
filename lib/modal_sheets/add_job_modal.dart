@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:date_time_picker/date_time_picker.dart';
 class JobModal extends StatefulWidget {
   @override
   _JobModalState createState() => _JobModalState();
@@ -16,6 +16,7 @@ class _JobModalState extends State<JobModal> {
     "experience": "",
     "location": "",
     "moreInfoLink": "",
+    "date-posted":"",
   };
 
   void addDataToFirebase() {
@@ -73,6 +74,13 @@ class _JobModalState extends State<JobModal> {
             TextFormField(
               decoration: const InputDecoration(labelText: 'More Info Link'),
               onSaved: (value) => formData['moreInfoLink'] = value,
+            ),
+            DateTimePicker(
+              initialDate: DateTime.now(),
+              firstDate: DateTime.now().subtract(const Duration(days: 180)),
+              lastDate: DateTime.now().add(const Duration(days: 180)),
+              dateLabelText: 'Date Posted',
+              onSaved: (value) => formData['date-posted'] = value?.substring(0,10),
             ),
             const SizedBox(height: 16),
             Row(

@@ -2,8 +2,10 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../modal_sheets/add_job_modal.dart';
 import '../modal_sheets/show_job_details_model.dart';
-
+import '../tools/navigation.dart';
+import 'package:intl/intl.dart';
 class ShowData extends StatefulWidget {
   const ShowData({Key? key}) : super(key: key);
 
@@ -28,6 +30,13 @@ class _ShowDataState extends State<ShowData> {
   void dispose() {
     _locationController.dispose();
     super.dispose();
+  }
+
+  String convertDateFormat(String dateStr) {
+    DateTime dateTime = DateTime.parse(dateStr);
+    DateFormat outputFormat = DateFormat('dd-MM-yyyy');
+
+    return outputFormat.format(dateTime);
   }
 
   Widget loadingIndicator() {
@@ -66,6 +75,24 @@ class _ShowDataState extends State<ShowData> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey,
+
+     // harbour x feature   ( line 74-83 )
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          FloatingActionButton(
+            // tooltip: "Go Home",
+            onPressed: () => goBack(context),
+            child: const Icon(Icons.home_rounded),
+          ),
+          FloatingActionButton(
+            tooltip: "Add new Job",
+            onPressed: () => myModalSheet(JobModal()),
+            child: const Icon(Icons.add),
+          ),
+        ],
+      ),
+
       appBar: AppBar(
         title: const Text("Job Opportunities"),
         centerTitle: true,
@@ -157,6 +184,8 @@ class _ShowDataState extends State<ShowData> {
                           title: Text("${snapshot.data!.docs[index]["title"]}"),
                           subtitle:
                           Text("${snapshot.data!.docs[index]["company"]}"),
+                          trailing:
+                          Text(convertDateFormat(snapshot.data!.docs[index]["date-posted"])),
                         ),
                       );
                     },

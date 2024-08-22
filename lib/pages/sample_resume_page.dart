@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import '../global_constants.dart';
+import 'package:flutter/material.dart';
+
+ import '../global_constants.dart';
 import 'resume_maker_websites_page.dart';
 import '../tools/link_tools.dart';
 
@@ -15,13 +17,13 @@ class _ResumeState extends State<Resume> {
   final List<String> imageUrls = resumeThumbnails;
   final List<String> pdfFileUrls = resumeLinks;
 
-  late CarouselController _controller;
+  late CarouselSliderController _controller;
   int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _controller = CarouselController();
+    _controller = CarouselSliderController();
   }
 
   @override
@@ -34,6 +36,7 @@ class _ResumeState extends State<Resume> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           CarouselSlider.builder(
+            // carouselController: _controller,
             carouselController: _controller,
             itemCount: imageUrls.length,
             options: CarouselOptions(

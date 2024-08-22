@@ -49,7 +49,6 @@ class MainDrawer extends StatelessWidget {
           ),
           margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           color: Colors.grey[900],
-          // Dark Background Color
           child: Container(
             padding: padding.add(const EdgeInsets.symmetric(vertical: 20)),
             child: Row(
@@ -107,7 +106,7 @@ class MainDrawer extends StatelessWidget {
             firstName: 'Mudit',
             lastName: 'Garg',
             avatarLink: 'assets/img/mg.jpg',
-            lifeMotto: 'It is what it is !',
+            lifeMotto: 'It is what it is!',
             connectionLinks: {
               'email': 'gargmu@tcd.ie',
               'linkedin': 'https://www.linkedin.com/in/muditgarg48/',
@@ -152,7 +151,7 @@ class MainDrawer extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const BuyUsACoffee()));
         },
         style: ElevatedButton.styleFrom(
-          primary: Colors.grey[900],
+          backgroundColor: Colors.grey[900],
         ),
         child: const Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
@@ -180,13 +179,13 @@ class MainDrawer extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const TechnologiesPage()));
         },
         style: ElevatedButton.styleFrom(
-          primary: Colors.grey[900],
+          backgroundColor: Colors.grey[900],
         ),
         child: const Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
           child: Center(
             child: Text(
-              'Tech Used ',
+              'Tech Used',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.white,
@@ -217,7 +216,7 @@ class MainDrawer extends StatelessWidget {
           }
         },
         style: ElevatedButton.styleFrom(
-          primary: Colors.grey[900],
+          backgroundColor: Colors.grey[900],
         ),
         child: const Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
@@ -254,7 +253,7 @@ class MainDrawer extends StatelessWidget {
           }
         },
         style: ElevatedButton.styleFrom(
-          primary: Colors.grey[900],
+          backgroundColor: Colors.grey[900],
         ),
         child: const Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
@@ -274,36 +273,22 @@ class MainDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NavigationDrawer(
-      backgroundColor: Colors.white,
-      children: [
-        intro(),
-        const Divider(
-          indent: 30,
-          endIndent: 30,
-        ),
-        ...meetTheDevs(context),
-        const Divider(
-          indent: 30,
-          endIndent: 30,
-        ),
-        buildSupportButton(context),
-        const Divider(
-          indent: 30,
-          endIndent: 30,
-        ),
-        techUsedButton(context),
-        const Divider(
-          indent: 30,
-          endIndent: 30,
-        ),
-        checkForUpdatesButton(context),
-        const Divider(
-          indent: 30,
-          endIndent: 30,
-        ),
-        feedbackButton(context),
-      ],
+    return Drawer(
+      child: ListView(
+        children: [
+          intro(),
+          const Divider(indent: 30, endIndent: 30),
+          ...meetTheDevs(context),
+          const Divider(indent: 30, endIndent: 30),
+          buildSupportButton(context),
+          const Divider(indent: 30, endIndent: 30),
+          techUsedButton(context),
+          const Divider(indent: 30, endIndent: 30),
+          checkForUpdatesButton(context),
+          const Divider(indent: 30, endIndent: 30),
+          feedbackButton(context),
+        ],
+      ),
     );
   }
 }

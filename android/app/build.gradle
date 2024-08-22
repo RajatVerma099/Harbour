@@ -32,7 +32,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 33 // Update to the latest version
+    compileSdkVersion 34 // Update to the latest version
 
     defaultConfig {
         applicationId "com.example.harbour"

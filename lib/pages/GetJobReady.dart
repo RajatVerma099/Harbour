@@ -1,5 +1,5 @@
+import 'package:carousel_slider/carousel_slider.dart'  as carousel_slider;
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 void main() {
@@ -205,9 +205,9 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Container(
         color: Colors.grey[500],
-        child: CarouselSlider.builder(
+        child: carousel_slider.CarouselSlider.builder(
           itemCount: mainTitles.length,
-          options: CarouselOptions(
+          options: carousel_slider.CarouselOptions(
             height: MediaQuery.of(context).size.height,
             aspectRatio: 16 / 9,
             viewportFraction: 0.5,
@@ -248,9 +248,9 @@ class VerticalCarousel extends StatelessWidget {
           ),
         ),
         SizedBox(height: 8.0),
-        CarouselSlider.builder(
+        carousel_slider.CarouselSlider.builder(
           itemCount: videoData.length,
-          options: CarouselOptions(
+          options: carousel_slider.CarouselOptions(
             height: 200,
             aspectRatio: 16 / 9,
             viewportFraction: 0.6,

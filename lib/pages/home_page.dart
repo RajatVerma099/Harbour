@@ -152,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage>
     return ElevatedButton(
       onPressed: () => goTo(page, context),
       style: ElevatedButton.styleFrom(
-        primary: Colors.transparent,
+        backgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
